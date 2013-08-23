@@ -12,3 +12,5 @@ MyCommons是常用的简单工具类，可以简单和快速的在此基础上�
 * MyCommonsAndroid
 * MyCommonsIOS
 * MyCommonsWindow
+
+Csdn地址：http://blog.csdn.net/guijiaoba/article/details/10241715
