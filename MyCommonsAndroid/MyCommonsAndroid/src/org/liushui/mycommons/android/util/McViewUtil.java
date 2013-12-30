@@ -14,7 +14,7 @@ public class McViewUtil {
 
 	public static boolean isShow(View view) {
 		if (view != null) {
-			return view.getVisibility() == View.INVISIBLE;
+			return view.getVisibility() == View.VISIBLE;
 		} else {
 			return false;
 		}

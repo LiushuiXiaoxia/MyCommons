@@ -25,6 +25,10 @@ public class McLog {
 		sTag = McApplication.getMcAppInstance().getPackageName();
 	}
 
+	public static void setDebug(boolean isDebug) {
+		sIsDebug = isDebug;
+	}
+
 	public static void i(String msg) {
 		if (sIsDebug) {
 			Log.i(sTag, msg);
@@ -39,6 +43,22 @@ public class McLog {
 			msg = obj.toString();
 		}
 		i(msg);
+	}
+
+	public static void w(String msg) {
+		if (sIsDebug) {
+			Log.w(sTag, msg);
+		}
+	}
+
+	public static void w(Object obj) {
+		String msg = null;
+		if (obj == null) {
+			msg = "Obj is null.";
+		} else {
+			msg = obj.toString();
+		}
+		w(msg);
 	}
 
 	public static void i(String format, Object... args) {
