@@ -53,4 +53,8 @@ public class McViewUtil {
 
 		}
 	}
+
+	public static void toggle(View view) {
+		showORHiden(view, !isShow(view));
+	}
 }

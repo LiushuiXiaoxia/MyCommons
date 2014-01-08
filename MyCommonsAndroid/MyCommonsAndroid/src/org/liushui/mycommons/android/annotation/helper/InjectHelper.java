@@ -2,13 +2,18 @@ package org.liushui.mycommons.android.annotation.helper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.liushui.mycommons.android.annotation.OnClick;
 import org.liushui.mycommons.android.annotation.ViewInject;
 import org.liushui.mycommons.android.exception.McException;
 import org.liushui.mycommons.android.log.McLog;
 
 import android.app.Activity;
+import android.util.SparseArray;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 /**
  * Title: InjectHelper.java<br>
@@ -51,6 +56,8 @@ public class InjectHelper {
 		if (v == null) {
 			throw new McException("container can't find view.");
 		}
+		SparseArray<View> views = new SparseArray<View>();
+		List<Field> clicks = new ArrayList<Field>();
 		if (fields != null && fields.length > 0) {
 			for (Field field : fields) {
 				ViewInject viewInject = field.getAnnotation(ViewInject.class);
@@ -58,9 +65,37 @@ public class InjectHelper {
 					int viewId = viewInject.id();
 					try {
 						field.setAccessible(true);
-						field.set(obj, v.findViewById(viewId));
+						View view = v.findViewById(viewId);
+						field.set(obj, view);
+						views.put(viewId, view);
 					} catch (Exception e) {
 						McLog.e(container + " can't find " + field.getName() + "(" + viewId + ")", e);
+					}
+				} else {
+					OnClick click = field.getAnnotation(OnClick.class);
+					if (click != null) {
+						clicks.add(field);
+					}
+				}
+			}
+		}
+		for (Field field : clicks) {
+			OnClick click = field.getAnnotation(OnClick.class);
+			if (click != null) {
+				int[] values = click.value();
+				field.setAccessible(true);
+				Object fieldValue = null;
+				try {
+					fieldValue = field.get(obj);
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+				for (int id : values) {
+					View view = views.get(id);
+					if (view != null) {
+						view.setOnClickListener((OnClickListener) fieldValue);
 					}
 				}
 			}

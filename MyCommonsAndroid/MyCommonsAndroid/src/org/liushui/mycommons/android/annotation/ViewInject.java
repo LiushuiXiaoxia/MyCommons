@@ -16,11 +16,11 @@ import java.lang.annotation.Target;
 public @interface ViewInject {
 	public int id();
 
-	public String click() default "";
-
-	public String longClick() default "";
-
-	public String itemClick() default "";
-
-	public String itemLongClick() default "";
+	//	public String click() default "";
+	//
+	//	public String longClick() default "";
+	//
+	//	public String itemClick() default "";
+	//
+	//	public String itemLongClick() default "";
 }
