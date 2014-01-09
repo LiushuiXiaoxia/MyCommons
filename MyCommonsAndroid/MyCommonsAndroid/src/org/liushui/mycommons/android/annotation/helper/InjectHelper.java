@@ -62,7 +62,10 @@ public class InjectHelper {
 			for (Field field : fields) {
 				ViewInject viewInject = field.getAnnotation(ViewInject.class);
 				if (viewInject != null) {
-					int viewId = viewInject.id();
+					int viewId = viewInject.value();
+					if (viewId == 0) {
+						viewId = viewInject.id();
+					}
 					try {
 						field.setAccessible(true);
 						View view = v.findViewById(viewId);
@@ -79,6 +82,7 @@ public class InjectHelper {
 				}
 			}
 		}
+		// 设置click回调
 		for (Field field : clicks) {
 			OnClick click = field.getAnnotation(OnClick.class);
 			if (click != null) {

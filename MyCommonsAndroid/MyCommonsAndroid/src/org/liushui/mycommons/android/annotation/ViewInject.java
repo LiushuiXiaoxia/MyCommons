@@ -14,7 +14,14 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ViewInject {
-	public int id();
+
+	public int value() default 0;
+
+	/**
+	 * 使用value代替
+	 * @return
+	 */
+	public int id() default 0;
 
 	//	public String click() default "";
 	//

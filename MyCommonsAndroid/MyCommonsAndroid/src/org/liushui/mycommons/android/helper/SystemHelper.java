@@ -32,4 +32,10 @@ public class SystemHelper {
 		boolean b = imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 		return b;
 	}
+
+	public static boolean showSoftInput(View v) {
+		InputMethodManager imm = (InputMethodManager) McApplication.getMcAppInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
+		boolean b = imm.showSoftInput(v, 0);
+		return b;
+	}
 }
