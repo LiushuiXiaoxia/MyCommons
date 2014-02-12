@@ -29,6 +29,26 @@ public class McLog {
 		sIsDebug = isDebug;
 	}
 
+	public static void setLogTag(String tag) {
+		sTag = tag;
+	}
+
+	public static void d(Object obj) {
+		String msg = null;
+		if (obj == null) {
+			msg = "Obj is null.";
+		} else {
+			msg = obj.toString();
+		}
+		d(msg);
+	}
+
+	public static void d(String msg) {
+		if (sIsDebug) {
+			Log.d(sTag, msg);
+		}
+	}
+
 	public static void i(String msg) {
 		if (sIsDebug) {
 			Log.i(sTag, msg);
@@ -86,6 +106,23 @@ public class McLog {
 		}
 	}
 
+	public static void md(Class<?> clazz, String method) {
+		md(clazz.getName(), method);
+	}
+
+	public static void md(Object obj, String method) {
+		if (sIsDebug) {
+			int len = obj.toString().length();
+			StringBuffer sb = new StringBuffer();
+			if (len < LOG_WIDTH_LENGTH) {
+				for (int i = 0; i < LOG_WIDTH_LENGTH - len; i++) {
+					sb.append(".");
+				}
+			}
+			d(obj + sb.toString() + method);
+		}
+	}
+
 	public static void logInObj(Object obj, String msg) {
 		Class<?> cls = obj.getClass();
 		String name = cls.getSimpleName();
@@ -109,9 +146,5 @@ public class McLog {
 		if (sIsDebug) {
 			Log.e(sTag, msg, t);
 		}
-	}
-
-	public static void setLogTag(String tag) {
-		sTag = tag;
 	}
 }

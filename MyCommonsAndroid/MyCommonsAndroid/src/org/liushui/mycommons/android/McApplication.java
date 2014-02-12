@@ -109,7 +109,7 @@ public class McApplication extends Application {
 		init();
 	}
 
-	void init() {
+	private void init() {
 		int[] size = getScreenSize();
 		SCREEN_WIDTH = size[0];// display.getWidth();
 		SCREEN_HEIGHT = size[1];// display.getHeight();

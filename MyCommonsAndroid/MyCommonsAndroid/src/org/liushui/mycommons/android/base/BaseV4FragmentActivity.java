@@ -25,7 +25,7 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
-		McLog.m(this, "onCreate");
+		McLog.md(this, "onCreate");
 	}
 
 	/**
@@ -35,7 +35,7 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	 */
 	protected void onStart() {
 		super.onStart();
-		McLog.m(this, "onStart");
+		McLog.md(this, "onStart");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	 */
 	protected void onResume() {
 		super.onResume();
-		McLog.m(this, "onResume");
+		McLog.md(this, "onResume");
 	}
 
 	/**
@@ -55,7 +55,7 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	 */
 	protected void onPause() {
 		super.onPause();
-		McLog.m(this, "onPause");
+		McLog.md(this, "onPause");
 	}
 
 	/**
@@ -65,7 +65,7 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	 */
 	protected void onStop() {
 		super.onStop();
-		McLog.m(this, "onStop");
+		McLog.md(this, "onStop");
 	}
 
 	/**
@@ -75,7 +75,7 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	 */
 	protected void onDestroy() {
 		super.onDestroy();
-		McLog.m(this, "onDestroy");
+		McLog.md(this, "onDestroy");
 	}
 
 	/**
@@ -85,7 +85,7 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	 */
 	protected void onRestart() {
 		super.onRestart();
-		McLog.m(this, "onRestart");
+		McLog.md(this, "onRestart");
 	}
 
 	/**
@@ -95,6 +95,6 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
 	 */
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		McLog.m(this, "onConfigurationChanged");
+		McLog.md(this, "onConfigurationChanged");
 	}
 }
