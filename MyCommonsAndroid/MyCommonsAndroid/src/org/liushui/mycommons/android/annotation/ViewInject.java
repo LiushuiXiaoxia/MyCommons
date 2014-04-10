@@ -13,21 +13,17 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ViewInject {
+public @interface ViewInject
+{
 
 	public int value() default 0;
 
 	/**
 	 * 使用value代替
+	 * 
 	 * @return
 	 */
 	public int id() default 0;
 
-	//	public String click() default "";
-	//
-	//	public String longClick() default "";
-	//
-	//	public String itemClick() default "";
-	//
-	//	public String itemLongClick() default "";
+	public int parentId() default 0;
 }

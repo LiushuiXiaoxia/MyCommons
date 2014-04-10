@@ -20,130 +20,111 @@ import android.view.View.OnClickListener;
  * Date: 2013年8月8日<br>
  * Version:v1.0
  */
-public class InjectHelper {
-	//	static Class<?> appFragmentCls;
-	//	static Class<?> v4AppFragmentCls;
-	//
-	//	static Method appFragmentGetViewMethod;
-	//	static Method v4FragmentGetViewMethod;
-	//	static {
-	//		try {
-	//			appFragmentCls = Class.forName("android.app.Fragment");
-	//			appFragmentGetViewMethod = appFragmentCls.getDeclaredMethod("getView");
-	//		} catch (Exception e) {
-	//			McLog.w(e);
-	//		}
-	//		try {
-	//			v4AppFragmentCls = Class.forName("android.support.v4.app.Fragment");
-	//			v4FragmentGetViewMethod = v4AppFragmentCls.getDeclaredMethod("getView");
-	//		} catch (Exception e) {
-	//			McLog.w(e);
-	//		}
-	//	}
+public class InjectHelper
+{
 
 	/**
 	 * 初始化
 	 * 
-	 * @param obj
-	 *            标注所在的对象
-	 * @param container
-	 *            view所在的容器
+	 * @param obj 标注所在的对象
+	 * @param container view所在的容器
 	 */
-	public static void init(Object obj, Activity container) {
+	public static void init(Object obj, Activity container)
+	{
 		init(obj, container.getWindow().getDecorView());
 	}
 
 	/**
 	 * 初始化
 	 * 
-	 * @param obj
-	 *            标注所在的对象
-	 * @param container
-	 *            view所在的容器
+	 * @param obj 标注所在的对象
+	 * @param container view所在的容器
 	 */
-	public static void init(Object obj, View container) {
+	public static void init(Object obj, View container)
+	{
 		Field[] fields = obj.getClass().getDeclaredFields();
-		View v = container;
-		if (v == null) {
+		if (container == null)
+		{
 			throw new McException("container is null.");
 		}
 		SparseArray<View> views = new SparseArray<View>();
 		List<Field> clicks = new ArrayList<Field>();
-		if (fields != null && fields.length > 0) {
-			for (Field field : fields) {
+		if (fields != null && fields.length > 0)
+		{
+			for (Field field : fields)
+			{
 				ViewInject viewInject = field.getAnnotation(ViewInject.class);
-				if (viewInject != null) {
+				if (viewInject != null)
+				{
 					int viewId = viewInject.value();
-					if (viewId == 0) {
+					int parentId = viewInject.parentId();
+					if (viewId == 0)
+					{
 						viewId = viewInject.id();
 					}
-					try {
+					try
+					{
 						field.setAccessible(true);
-						View view = v.findViewById(viewId);
+						View temp = container;
+						if (parentId != 0)
+						{
+							temp = container.findViewById(parentId);
+							if (temp == null)
+							{
+								String msg = String.format("%s's can't find %s's parentView(pId = %s)", container, field.getName(), parentId);
+								McLog.e(msg);
+							}
+						}
+						View view = temp.findViewById(viewId);
 						field.set(obj, view);
 						views.put(viewId, view);
-						if (view == null) {
-							McLog.e(container + " can't find " + field.getName() + "(" + viewId + ")");
+						if (view == null)
+						{
+							String msg = String.format("%s can't find %s (pId = %s, vId = %s)", container, field.getName(), parentId, viewId);
+							McLog.e(msg);
 						}
-					} catch (Exception e) {
-						McLog.e(container + " can't find " + field.getName() + "(" + viewId + ")", e);
+					} catch (Exception e)
+					{
+						String msg = String.format("%s can't find %s (pId = %s, vId = %s)", container, field.getName(), parentId, viewId);
+						McLog.e(msg);
 					}
-				} else {
-					OnClick click = field.getAnnotation(OnClick.class);
-					if (click != null) {
-						clicks.add(field);
-					}
+				}
+
+				OnClick click = field.getAnnotation(OnClick.class);
+				if (click != null)
+				{
+					clicks.add(field);
 				}
 			}
 		}
 		// 设置click回调
-		for (Field field : clicks) {
+		for (Field field : clicks)
+		{
 			OnClick click = field.getAnnotation(OnClick.class);
-			if (click != null) {
+			if (click != null)
+			{
 				int[] values = click.value();
 				field.setAccessible(true);
 				Object fieldValue = null;
-				try {
+				try
+				{
 					fieldValue = field.get(obj);
-				} catch (IllegalArgumentException e) {
+				} catch (IllegalArgumentException e)
+				{
 					e.printStackTrace();
-				} catch (IllegalAccessException e) {
+				} catch (IllegalAccessException e)
+				{
 					e.printStackTrace();
 				}
-				for (int id : values) {
+				for (int id : values)
+				{
 					View view = views.get(id);
-					if (view != null) {
+					if (view != null)
+					{
 						view.setOnClickListener((OnClickListener) fieldValue);
 					}
 				}
 			}
 		}
 	}
-
-	//	static View getView(Object container) {
-	//		View v = null;
-	//		if (container instanceof View) {
-	//			v = (View) container;
-	//		} else if (container instanceof Activity) {
-	//			Activity a = (Activity) container;
-	//			v = a.getWindow().getDecorView();
-	//		} else if (appFragmentCls != null && appFragmentCls.isInstance(container)) {
-	//			if (appFragmentGetViewMethod != null) {
-	//				try {
-	//					v = (View) appFragmentGetViewMethod.invoke(container);
-	//				} catch (Exception e) {
-	//					McLog.e("", e);
-	//				}
-	//			}
-	//		} else if (v4AppFragmentCls != null && v4AppFragmentCls.isInstance(container)) {
-	//			if (v4FragmentGetViewMethod != null) {
-	//				try {
-	//					v = (View) v4FragmentGetViewMethod.invoke(container);
-	//				} catch (Exception e) {
-	//					McLog.e("", e);
-	//				}
-	//			}
-	//		}
-	//		return v;
-	//	}
 }
