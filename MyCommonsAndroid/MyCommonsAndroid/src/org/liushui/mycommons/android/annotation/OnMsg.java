@@ -1,7 +1,13 @@
-package org.liushui.mycommons.android.event;
+package org.liushui.mycommons.android.annotation;
 
-public @interface OnEvent
-{
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface OnMsg {
 	/**
 	 * 在UI线程上
 	 * 
@@ -10,12 +16,12 @@ public @interface OnEvent
 	public boolean ui() default true;
 
 	/**
-	 * 监听的action
+	 * 监听的msg
 	 * 
 	 * @return
 	 * 
 	 */
-	public String action();
+	public int[] msg();
 
 	/**
 	 * 监听之前的发布的事件

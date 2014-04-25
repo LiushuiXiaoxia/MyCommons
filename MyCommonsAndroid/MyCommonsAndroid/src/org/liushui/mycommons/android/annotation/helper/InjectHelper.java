@@ -33,4 +33,8 @@ public class InjectHelper
 	{
 		new Helper(obj, container).init();
 	}
+	
+	public static void unRegistMsg(Object obj){
+		
+	}
 }
