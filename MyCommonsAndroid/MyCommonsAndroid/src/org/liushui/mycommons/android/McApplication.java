@@ -8,6 +8,7 @@ import org.liushui.mycommons.android.log.McLog;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -18,17 +19,14 @@ import android.view.WindowManager;
  * 比如如下所示：
  * 
  * <pre>
- * public class AppContext extends McApplication
- * {
+ * public class AppContext extends McApplication {
  * 	private static AppContext instance;
  * 
- * 	public static synchronized AppContext getInstance()
- * 	{
+ * 	public static synchronized AppContext getInstance() {
  * 		return instance;
  * 	}
  * 
- * 	public void onCreate()
- * 	{
+ * 	public void onCreate() {
  * 		super.onCreate();
  * 		instance = this;
  * 	}
@@ -40,8 +38,7 @@ import android.view.WindowManager;
  * Date: 2013-5-8<br>
  * Version:v1.0
  */
-public class McApplication extends Application
-{
+public class McApplication extends Application {
 	private static McApplication instance;
 
 	/**
@@ -49,10 +46,8 @@ public class McApplication extends Application
 	 * 
 	 * @return
 	 */
-	public static McApplication getMcAppInstance()
-	{
-		if (instance == null)
-		{
+	public static McApplication getMcAppInstance() {
+		if (instance == null) {
 			throw new McException("McApplication is null.");
 		}
 		return instance;
@@ -75,29 +70,28 @@ public class McApplication extends Application
 
 	public static int DIMEN_DPI = -1;
 
+	private Handler handler;
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
 	 * android.content.ContextWrapper#attachBaseContext(android.content.Context)
 	 */
-	protected void attachBaseContext(Context base)
-	{
+	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);
 		instance = this;
+		handler = new Handler();
 
 		ApplicationInfo info = getApplicationInfo();
 		String lable = info.name;
-		if (lable == null)
-		{
+		if (lable == null) {
 			int res = info.labelRes;
-			if (res != 0)
-			{
+			if (res != 0) {
 				lable = getString(res);
 			}
 		}
-		if (lable == null)
-		{
+		if (lable == null) {
 			lable = getPackageName();
 		}
 		McLog.i("===============App %s(%s) start================", lable, getPackageName());
@@ -108,26 +102,22 @@ public class McApplication extends Application
 	 * 
 	 * @see android.app.Application#onCreate()
 	 */
-	public void onCreate()
-	{
+	public void onCreate() {
 		super.onCreate();
 		McLog.md(this, "onCreate");
 		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-			public void uncaughtException(Thread thread, Throwable th)
-			{
+			public void uncaughtException(Thread thread, Throwable th) {
 				McApplication.this.uncaughtException(thread, th);
 			}
 		});
 		init();
 	}
 
-	private void init()
-	{
+	private void init() {
 		int[] size = getScreenSize();
 		SCREEN_WIDTH = size[0];// display.getWidth();
 		SCREEN_HEIGHT = size[1];// display.getHeight();
-		if (SCREEN_WIDTH > SCREEN_HEIGHT)
-		{
+		if (SCREEN_WIDTH > SCREEN_HEIGHT) {
 			int t = SCREEN_HEIGHT;
 			SCREEN_HEIGHT = SCREEN_WIDTH;
 			SCREEN_WIDTH = t;
@@ -138,8 +128,7 @@ public class McApplication extends Application
 		McLog.i("DIMEN_DPI = " + DIMEN_DPI);
 	}
 
-	public int[] getScreenSize()
-	{
+	public int[] getScreenSize() {
 		WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 
 		DisplayMetrics dm = new DisplayMetrics();
@@ -156,8 +145,7 @@ public class McApplication extends Application
 	 * @param thread
 	 * @param th
 	 */
-	protected void uncaughtException(Thread thread, Throwable th)
-	{
+	protected void uncaughtException(Thread thread, Throwable th) {
 		Log.i(getPackageName(), this + "..............uncaughtException");
 		Log.e(getPackageName(), thread.toString());
 		Log.e(getPackageName(), "Throwable", th);
@@ -168,8 +156,7 @@ public class McApplication extends Application
 	 * 
 	 * @see android.app.Application#onTerminate()
 	 */
-	public void onTerminate()
-	{
+	public void onTerminate() {
 		super.onTerminate();
 		McLog.md(this, "onTerminate");
 	}
@@ -179,9 +166,26 @@ public class McApplication extends Application
 	 * 
 	 * @see android.app.Application#onLowMemory()
 	 */
-	public void onLowMemory()
-	{
+	public void onLowMemory() {
 		super.onLowMemory();
 		McLog.md(this, "onLowMemory");
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see android.os.Handler#post(Runnable r)
+	 */
+	public void post(Runnable runnable) {
+		handler.post(runnable);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see android.os.Handler#postDelayed(Runnable r, long delayMillis)
+	 */
+	public void postDelayed(Runnable runnable, long delayMillis) {
+		handler.postDelayed(runnable, delayMillis);
 	}
 }

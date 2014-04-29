@@ -3,11 +3,9 @@ package org.liushui.mycommons.android.annotation.helper;
 import java.lang.reflect.Field;
 
 import org.liushui.mycommons.android.annotation.OnClick;
-import org.liushui.mycommons.android.annotation.OnMsg;
 import org.liushui.mycommons.android.annotation.ViewInject;
 import org.liushui.mycommons.android.exception.McException;
 import org.liushui.mycommons.android.log.McLog;
-import org.liushui.mycommons.android.msg.MsgCallback;
 
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,11 +36,6 @@ class Helper {
 				OnClick onClick = field.getAnnotation(OnClick.class);
 				if (onClick != null) {
 					doOnClick(onClick, field);
-				}
-
-				OnMsg onMsg = field.getAnnotation(OnMsg.class);
-				if (onMsg != null) {
-					doMsg(onMsg, field);
 				}
 			}
 		}
@@ -102,23 +95,5 @@ class Helper {
 			McLog.e(msg);
 		}
 		return v;
-	}
-
-	void doMsg(OnMsg onMsg, Field field) {
-		int[] msgs = onMsg.msg();
-
-		field.setAccessible(true);
-		try {
-			Object value = field.get(obj);
-			if (value instanceof MsgCallback) {
-				
-			} else {
-				McLog.e(field.getName() + " in " + obj + " is not MsgCallback instance.");
-			}
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
 	}
 }

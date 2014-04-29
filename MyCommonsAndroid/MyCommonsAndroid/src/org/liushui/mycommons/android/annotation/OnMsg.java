@@ -24,23 +24,9 @@ public @interface OnMsg {
 	public int[] msg();
 
 	/**
-	 * 监听之前的发布的事件
+	 * 是否使用上一个事件
 	 * 
 	 * @return
 	 */
-	public boolean onBefore() default true;
-
-	/**
-	 * 如果发布线程不在主线程是否在新的进程上
-	 * 
-	 * @return
-	 */
-	public boolean newThread() default true;
-
-	/**
-	 * 当为activity时返回时自动取消监听
-	 * 
-	 * @return
-	 */
-	public boolean autoUnRegist() default true;
+	public boolean useLastMsg() default true;
 }
