@@ -38,19 +38,21 @@ import android.view.WindowManager;
  * Date: 2013-5-8<br>
  * Version:v1.0
  */
-public class McApplication extends Application {
-	private static McApplication instance;
+public class McApplication<T extends McApplication<?>> extends Application {
+	private static McApplication<?> instance;
 
 	/**
 	 * 获取实例化对象
 	 * 
 	 * @return
 	 */
-	public static McApplication getMcAppInstance() {
+	public static <F extends McApplication<?>> F getMcAppInstance() {
 		if (instance == null) {
 			throw new McException("McApplication is null.");
 		}
-		return instance;
+		@SuppressWarnings("unchecked")
+		F f = (F) instance;
+		return f;
 	}
 
 	/**
