@@ -11,10 +11,10 @@ import org.liushui.mycommons.android.McApplication;
 public class McDimenUtil {
 
 	public static int px2Dp(int px) {
-		return (int) (px * McApplication.DIMEN_RATE + 0.5F);
+		return (int) (px / McApplication.DIMEN_RATE + 0.5F);
 	}
 
 	public static int dp2Px(int dp) {
-		return (int) (dp / McApplication.DIMEN_RATE  + 0.5F);
+		return (int) (dp * McApplication.DIMEN_RATE + 0.5F);
 	}
 }
