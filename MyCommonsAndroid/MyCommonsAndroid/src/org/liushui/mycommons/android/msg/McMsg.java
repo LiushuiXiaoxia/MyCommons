@@ -29,6 +29,7 @@ public class McMsg
 		mm.time = System.currentTimeMillis();
 		Message msg = new Message();
 		msg.obj = data;
+		msg.what = cmd;
 		mm.message = msg;
 		return mm;
 	}
