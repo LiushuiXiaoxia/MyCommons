@@ -89,11 +89,11 @@ public class McLog {
 		i(sb);
 	}
 
-	public static void m(Class<?> clazz, String method) {
-		m(clazz.getName(), method);
+	public static void m(Class<?> clazz, String FIELD) {
+		m(clazz.getName(), FIELD);
 	}
 
-	public static void m(Object obj, String method) {
+	public static void m(Object obj, String FIELD) {
 		if (sIsDebug) {
 			int len = obj.toString().length();
 			StringBuffer sb = new StringBuffer();
@@ -102,15 +102,15 @@ public class McLog {
 					sb.append(".");
 				}
 			}
-			i(obj + sb.toString() + method);
+			i(obj + sb.toString() + FIELD);
 		}
 	}
 
-	public static void md(Class<?> clazz, String method) {
-		md(clazz.getName(), method);
+	public static void md(Class<?> clazz, String FIELD) {
+		md(clazz.getName(), FIELD);
 	}
 
-	public static void md(Object obj, String method) {
+	public static void md(Object obj, String FIELD) {
 		if (sIsDebug) {
 			int len = obj.toString().length();
 			StringBuffer sb = new StringBuffer();
@@ -119,7 +119,7 @@ public class McLog {
 					sb.append(".");
 				}
 			}
-			d(obj + sb.toString() + method);
+			d(obj + sb.toString() + FIELD);
 		}
 	}
 

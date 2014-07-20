@@ -34,7 +34,7 @@ public class InjectHelper {
 	 *            view所在的容器
 	 */
 	public static void init(Object obj, View container) {
-		new Helper(obj, container).init();
+		new HelperProxy(obj, container).init();
 	}
 
 	/**
