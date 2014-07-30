@@ -1,51 +1,42 @@
 package org.liushui.mycommons.android.image;
 
-import android.graphics.Bitmap;
-
-/**
- * Title: ImageLoadItem.java<br>
- * author:xiaqiulei@gmail.com <br>
- * Date: 2012-7-31<br>
- * Version:v1.0
- * 图片加载单例
- */
 public class ImageLoadItem {
 
-	/**
-	 * 需要下载的图片url
-	 */
-	public String imageUrl;
-	/**
-	 * 下载后的bitmap
-	 */
-	public Bitmap bitmap;
-	/**
-	 * 回调方法
-	 */
-	public ImageLoadCallback callback;
+	public String url;
 
-	/**
-	 * Title: ImageLoadCallback.java<br>
-	 * author:xiaqiulei@gmail.com <br>
-	 * Date: 2012-7-31<br>
-	 * Version:v1.0
-	 * 加载回调函数
-	 */
-	public interface ImageLoadCallback {
+	public ImageLoadItem() {
+		super();
+	}
 
-		/**
-		 * 图片获取成功
-		 * 
-		 * @param bitmap
-		 * @param imageUrl
-		 */
-		public void onLoadSuccess(Bitmap bitmap, String imageUrl);
+	public ImageLoadItem(String url) {
+		super();
+		this.url = url;
+	}
 
-		/**
-		 * 图片获取失败
-		 * 
-		 * @param msg
-		 */
-		public void onLoadFail(String msg);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((url == null) ? 0 : url.hashCode());
+		return result;
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ImageLoadItem other = (ImageLoadItem) obj;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
+			return false;
+		return true;
+	}
+
+	public String toString() {
+		return "ImageLoadItem [url=" + url + "]";
 	}
 }
