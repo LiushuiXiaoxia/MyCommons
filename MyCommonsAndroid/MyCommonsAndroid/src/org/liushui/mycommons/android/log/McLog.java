@@ -89,11 +89,33 @@ public class McLog {
 		i(sb);
 	}
 
+	public static void mByStackTrace() {
+		StackTraceElement[] trace = new Throwable().fillInStackTrace().getStackTrace();
+		String caller = "<unknown>";
+		if (trace.length > 1) {
+			StackTraceElement element = trace[1];
+			// Class<?> clazz = element.getClass();
+			String callingClass = element.getClassName();
+			// callingClass = callingClass.substring(callingClass.lastIndexOf('.') + 1);
+			// callingClass = callingClass.substring(callingClass.lastIndexOf('$') + 1);
+
+			int len = callingClass.length();
+			StringBuffer sb = new StringBuffer();
+			if (len < LOG_WIDTH_LENGTH) {
+				for (int i = 0; i < LOG_WIDTH_LENGTH - len; i++) {
+					sb.append(".");
+				}
+			}
+			caller = callingClass + sb.toString() + element.getMethodName();
+		}
+		i(caller);
+	}
+
 	public static void m(Class<?> clazz, String FIELD) {
 		m(clazz.getName(), FIELD);
 	}
 
-	public static void m(Object obj, String FIELD) {
+	public static void m(Object obj, String method) {
 		if (sIsDebug) {
 			int len = obj.toString().length();
 			StringBuffer sb = new StringBuffer();
@@ -102,15 +124,37 @@ public class McLog {
 					sb.append(".");
 				}
 			}
-			i(obj + sb.toString() + FIELD);
+			i(obj + sb.toString() + method);
 		}
 	}
 
-	public static void md(Class<?> clazz, String FIELD) {
-		md(clazz.getName(), FIELD);
+	public static void mdByStackTrace() {
+		StackTraceElement[] trace = new Throwable().fillInStackTrace().getStackTrace();
+		String caller = "<unknown>";
+		if (trace.length > 1) {
+			StackTraceElement element = trace[1];
+			// Class<?> clazz = element.getClass();
+			String callingClass = element.getClassName();
+			// callingClass = callingClass.substring(callingClass.lastIndexOf('.') + 1);
+			// callingClass = callingClass.substring(callingClass.lastIndexOf('$') + 1);
+
+			int len = callingClass.length();
+			StringBuffer sb = new StringBuffer();
+			if (len < LOG_WIDTH_LENGTH) {
+				for (int i = 0; i < LOG_WIDTH_LENGTH - len; i++) {
+					sb.append(".");
+				}
+			}
+			caller = callingClass + sb.toString() + element.getMethodName();
+		}
+		i(caller);
 	}
 
-	public static void md(Object obj, String FIELD) {
+	public static void md(Class<?> clazz, String method) {
+		md(clazz.getName(), method);
+	}
+
+	public static void md(Object obj, String method) {
 		if (sIsDebug) {
 			int len = obj.toString().length();
 			StringBuffer sb = new StringBuffer();
@@ -119,7 +163,7 @@ public class McLog {
 					sb.append(".");
 				}
 			}
-			d(obj + sb.toString() + FIELD);
+			d(obj + sb.toString() + method);
 		}
 	}
 
