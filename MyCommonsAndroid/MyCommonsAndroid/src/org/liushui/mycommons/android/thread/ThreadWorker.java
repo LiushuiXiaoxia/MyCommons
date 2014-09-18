@@ -4,22 +4,26 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class ThreadWorker
-{
+import org.liushui.mycommons.android.log.McLog;
+
+public class ThreadWorker {
 
 	static ExecutorService executorService;
 
-	public static void execute(Runnable runnable)
-	{
+	public static void execute(Runnable runnable) {
 		submit(runnable);
 	}
 
-	public static Future<?> submit(Runnable runnable)
-	{
-		if (executorService == null)
-		{
+	public static Future<?> submit(Runnable runnable) {
+		if (executorService == null) {
 			executorService = Executors.newFixedThreadPool(8);
 		}
-		return executorService.submit(runnable);
+		try {
+			Future<?> f = executorService.submit(runnable);
+			return f;
+		} catch (Exception e) {
+			McLog.e("Threadwork exception", e);
+		}
+		return null;
 	}
 }
