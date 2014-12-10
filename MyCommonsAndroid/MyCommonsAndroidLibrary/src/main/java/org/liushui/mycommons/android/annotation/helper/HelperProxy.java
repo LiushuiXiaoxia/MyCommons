@@ -41,78 +41,78 @@ import org.liushui.mycommons.android.exception.McException;
 import android.view.View;
 
 class HelperProxy {
-	Object obj;
-	View container;
-	Field[] fields;
-	Map<Class<? extends Annotation>, BaseHelper<? extends Annotation>> map;
+    Object obj;
+    View container;
+    Field[] fields;
+    Map<Class<? extends Annotation>, BaseHelper<? extends Annotation>> map;
 
-	HelperProxy(Object obj, View container) {
-		super();
-		this.obj = obj;
-		this.container = container;
-		if (container == null) {
-			throw new McException("container is null.");
-		}
+    HelperProxy(Object obj, View container) {
+        super();
+        this.obj = obj;
+        this.container = container;
+        if (container == null) {
+            throw new McException("container is null.");
+        }
 
-		map = new HashMap<Class<? extends Annotation>, BaseHelper<? extends Annotation>>();
-		map.put(OnClick.class, new OnClickHelper(obj, container));
-		map.put(OnCompoundButtonCheckedChange.class, new OnCompoundButtonCheckedChangeHelper(obj, container));
-		map.put(OnFocusChange.class, new OnOnFocusChangeHelper(obj, container));
-		map.put(OnItemClick.class, new OnItemClickHelper(obj, container));
-		map.put(OnItemLongClick.class, new OnItemLongClickHelper(obj, container));
-		map.put(OnItemSelected.class, new OnItemSelectedHelper(obj, container));
-		map.put(OnLongClick.class, new OnLongClickelper(obj, container));
-		map.put(OnPreferenceChange.class, new OnPreferenceChangeHelper(obj, container));
-		map.put(OnPreferenceClick.class, new OnPreferenceClickHelper(obj, container));
-		map.put(OnRadioGroupCheckedChange.class, new OnRadioGroupCheckedChangeChangeHelper(obj, container));
-		map.put(OnScroll.class, new OnScrollHelper(obj, container));
-		map.put(OnTouch.class, new OnTouchHelper(obj, container));
-		map.put(PreferenceInject.class, new PreferenceInjectHelper(obj, container));
-		map.put(ViewInject.class, new ViewInjectHelper(obj, container));
-	}
+        map = new HashMap<Class<? extends Annotation>, BaseHelper<? extends Annotation>>();
+        map.put(OnClick.class, new OnClickHelper(obj, container));
+        map.put(OnCompoundButtonCheckedChange.class, new OnCompoundButtonCheckedChangeHelper(obj, container));
+        map.put(OnFocusChange.class, new OnOnFocusChangeHelper(obj, container));
+        map.put(OnItemClick.class, new OnItemClickHelper(obj, container));
+        map.put(OnItemLongClick.class, new OnItemLongClickHelper(obj, container));
+        map.put(OnItemSelected.class, new OnItemSelectedHelper(obj, container));
+        map.put(OnLongClick.class, new OnLongClickelper(obj, container));
+        map.put(OnPreferenceChange.class, new OnPreferenceChangeHelper(obj, container));
+        map.put(OnPreferenceClick.class, new OnPreferenceClickHelper(obj, container));
+        map.put(OnRadioGroupCheckedChange.class, new OnRadioGroupCheckedChangeChangeHelper(obj, container));
+        map.put(OnScroll.class, new OnScrollHelper(obj, container));
+        map.put(OnTouch.class, new OnTouchHelper(obj, container));
+        map.put(PreferenceInject.class, new PreferenceInjectHelper(obj, container));
+        map.put(ViewInject.class, new ViewInjectHelper(obj, container));
+    }
 
-	void init() {
-		fields = obj.getClass().getDeclaredFields();
-		if (fields != null && fields.length > 0) {
-			for (Field field : fields) {
-				// 先取出字段的值和名称
-				field.setAccessible(true);
-				Object fieldValue = null;
-				String fieldName = null;
-				try {
-					fieldValue = field.get(obj);
-					fieldName = field.getName();
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
+    void init() {
+        fields = obj.getClass().getDeclaredFields();
+        if (fields != null && fields.length > 0) {
+            for (Field field : fields) {
+                // 先取出字段的值和名称
+                field.setAccessible(true);
+                Object fieldValue = null;
+                String fieldName = null;
+                try {
+                    fieldValue = field.get(obj);
+                    fieldName = field.getName();
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
 
-				// 所有的listener
-				for (Entry<Class<? extends Annotation>, BaseHelper<? extends Annotation>> en : map.entrySet()) {
-					Class<? extends Annotation> cls = en.getKey();
-					@SuppressWarnings("unchecked")
-					BaseHelper<Annotation> helper = (BaseHelper<Annotation>) en.getValue();
+                // 所有的listener
+                for (Entry<Class<? extends Annotation>, BaseHelper<? extends Annotation>> en : map.entrySet()) {
+                    Class<? extends Annotation> cls = en.getKey();
+                    @SuppressWarnings("unchecked")
+                    BaseHelper<Annotation> helper = (BaseHelper<Annotation>) en.getValue();
 
-					Annotation anno = field.getAnnotation(cls);
-					if (anno != null) {
-						helper.doHelp(anno, field, fieldName, fieldValue);
-					}
-				}
+                    Annotation anno = field.getAnnotation(cls);
+                    if (anno != null) {
+                        helper.doHelp(anno, field, fieldName, fieldValue);
+                    }
+                }
 
-				// 所有的资源
-				ResInject resInject = field.getAnnotation(ResInject.class);
-				if (resInject != null) {
-					Object res = ResLoader.loadRes(resInject.type(), McApplication.getMcAppInstance(), resInject.id());
-					try {
-						field.set(obj, res);
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-	}
+                // 所有的资源
+                ResInject resInject = field.getAnnotation(ResInject.class);
+                if (resInject != null) {
+                    Object res = ResLoader.loadRes(resInject.type(), McApplication.getMcAppInstance(), resInject.id());
+                    try {
+                        field.set(obj, res);
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
 }

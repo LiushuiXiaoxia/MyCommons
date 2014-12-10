@@ -12,24 +12,24 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class OnCompoundButtonCheckedChangeHelper extends BaseHelper<OnCompoundButtonCheckedChange> {
 
-	public OnCompoundButtonCheckedChangeHelper(Object obj, View container) {
-		super(obj, container);
-	}
+    public OnCompoundButtonCheckedChangeHelper(Object obj, View container) {
+        super(obj, container);
+    }
 
-	public void doHelp(OnCompoundButtonCheckedChange t, Field field, String fieldName, Object fieldValue) {
-		int[] values = t.value();
-		int parentId = t.parentId();
+    public void doHelp(OnCompoundButtonCheckedChange t, Field field, String fieldName, Object fieldValue) {
+        int[] values = t.value();
+        int parentId = t.parentId();
 
-		for (int id : values) {
-			View view = findView(id, parentId, fieldName);
-			if (view != null) {
-				if (view instanceof CompoundButton) {
-					CompoundButton cb = (CompoundButton) view;
-					cb.setOnCheckedChangeListener((OnCheckedChangeListener) fieldValue);
-				} else {
-					McLog.w("view(" + view + ") is not instance of CompoundButton.");
-				}
-			}
-		}
-	}
+        for (int id : values) {
+            View view = findView(id, parentId, fieldName);
+            if (view != null) {
+                if (view instanceof CompoundButton) {
+                    CompoundButton cb = (CompoundButton) view;
+                    cb.setOnCheckedChangeListener((OnCheckedChangeListener) fieldValue);
+                } else {
+                    McLog.w("view(" + view + ") is not instance of CompoundButton.");
+                }
+            }
+        }
+    }
 }

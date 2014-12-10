@@ -15,49 +15,49 @@ import android.net.NetworkInfo;
  */
 public class McUtilNet {
 
-	static NetworkInfo getInfo() {
-		Application app = McApplication.getMcAppInstance();
-		ConnectivityManager conManager = (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = conManager.getActiveNetworkInfo();
-		return networkInfo;
-	}
+    static NetworkInfo getInfo() {
+        Application app = McApplication.getMcAppInstance();
+        ConnectivityManager conManager = (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = conManager.getActiveNetworkInfo();
+        return networkInfo;
+    }
 
-	/**
-	 * 网络是否已经连接
-	 * 
-	 * @return
-	 */
-	public static boolean isConnectInternet() {
-		NetworkInfo networkInfo = getInfo();
-		if (networkInfo != null) {
-			return networkInfo.isAvailable();
-		}
-		return false;
-	}
+    /**
+     * 网络是否已经连接
+     *
+     * @return
+     */
+    public static boolean isConnectInternet() {
+        NetworkInfo networkInfo = getInfo();
+        if (networkInfo != null) {
+            return networkInfo.isAvailable();
+        }
+        return false;
+    }
 
-	/**
-	 * 网络是否已经连接
-	 * 
-	 * @return
-	 */
-	public static boolean isWifiConnect() {
-		NetworkInfo networkInfo = getInfo();
-		if (networkInfo != null) {
-			return networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
-		}
-		return false;
-	}
+    /**
+     * 网络是否已经连接
+     *
+     * @return
+     */
+    public static boolean isWifiConnect() {
+        NetworkInfo networkInfo = getInfo();
+        if (networkInfo != null) {
+            return networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
+        }
+        return false;
+    }
 
-	/**
-	 * 网络是否已经连接
-	 * 
-	 * @return
-	 */
-	public static boolean isMobileConnect() {
-		NetworkInfo networkInfo = getInfo();
-		if (networkInfo != null) {
-			return networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
-		}
-		return false;
-	}
+    /**
+     * 网络是否已经连接
+     *
+     * @return
+     */
+    public static boolean isMobileConnect() {
+        NetworkInfo networkInfo = getInfo();
+        if (networkInfo != null) {
+            return networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
+        }
+        return false;
+    }
 }

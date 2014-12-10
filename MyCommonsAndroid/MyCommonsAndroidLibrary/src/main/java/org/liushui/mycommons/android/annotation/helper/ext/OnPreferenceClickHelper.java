@@ -9,11 +9,11 @@ import android.view.View;
 
 public class OnPreferenceClickHelper extends BaseHelper<OnPreferenceChange> {
 
-	public OnPreferenceClickHelper(Object obj, View container) {
-		super(obj, container);
-	}
+    public OnPreferenceClickHelper(Object obj, View container) {
+        super(obj, container);
+    }
 
-	public void doHelp(OnPreferenceChange t, Field field, String fieldName, Object fieldValue) {
+    public void doHelp(OnPreferenceChange t, Field field, String fieldName, Object fieldValue) {
 
-	}
+    }
 }

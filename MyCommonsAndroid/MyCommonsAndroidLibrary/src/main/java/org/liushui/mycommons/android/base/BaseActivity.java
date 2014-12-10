@@ -15,86 +15,86 @@ import android.os.Bundle;
  */
 public abstract class BaseActivity extends Activity {
 
-	protected Context context;
+    protected Context context;
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		context = this;
-		McLog.md(this, "onCreate");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        context = this;
+        McLog.md(this, "onCreate");
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onStart()
-	 */
-	protected void onStart() {
-		super.onStart();
-		McLog.md(this, "onStart");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onStart()
+     */
+    protected void onStart() {
+        super.onStart();
+        McLog.md(this, "onStart");
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onResume()
-	 */
-	protected void onResume() {
-		super.onResume();
-		McLog.md(this, "onResume");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onResume()
+     */
+    protected void onResume() {
+        super.onResume();
+        McLog.md(this, "onResume");
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onPause()
-	 */
-	protected void onPause() {
-		super.onPause();
-		McLog.md(this, "onPause");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onPause()
+     */
+    protected void onPause() {
+        super.onPause();
+        McLog.md(this, "onPause");
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onStop()
-	 */
-	protected void onStop() {
-		super.onStop();
-		McLog.md(this, "onStop");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onStop()
+     */
+    protected void onStop() {
+        super.onStop();
+        McLog.md(this, "onStop");
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onDestroy()
-	 */
-	protected void onDestroy() {
-		super.onDestroy();
-		McLog.md(this, "onDestroy");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onDestroy()
+     */
+    protected void onDestroy() {
+        super.onDestroy();
+        McLog.md(this, "onDestroy");
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onRestart()
-	 */
-	protected void onRestart() {
-		super.onRestart();
-		McLog.md(this, "onRestart");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onRestart()
+     */
+    protected void onRestart() {
+        super.onRestart();
+        McLog.md(this, "onRestart");
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onConfigurationChanged(android.content.res.Configuration)
-	 */
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		McLog.md(this, "onConfigurationChanged");
-	}
+    /**
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onConfigurationChanged(android.content.res.Configuration)
+     */
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        McLog.md(this, "onConfigurationChanged");
+    }
 }

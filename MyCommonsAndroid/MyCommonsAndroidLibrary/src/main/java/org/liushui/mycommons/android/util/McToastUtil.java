@@ -13,34 +13,31 @@ import android.widget.Toast;
  */
 public class McToastUtil {
 
-	static Toast toast = Toast.makeText(McApplication.getMcAppInstance(), "", Toast.LENGTH_SHORT);
+    static Toast toast = Toast.makeText(McApplication.getMcAppInstance(), "", Toast.LENGTH_SHORT);
 
-	public static void show(String text) {
-		show(text, Toast.LENGTH_LONG);
-	}
+    public static void show(String text) {
+        show(text, Toast.LENGTH_LONG);
+    }
 
-	public static void show(int textRes) {
-		show(textRes, Toast.LENGTH_SHORT);
-	}
+    public static void show(int textRes) {
+        show(textRes, Toast.LENGTH_SHORT);
+    }
 
-	/**
-	 * 
-	 * @param text
-	 *            显示内容
-	 * @param t
-	 *            显示时间
-	 */
-	public static void show(String text, int t) {
-		//toast.cancel();
-		toast.setDuration(t);
-		toast.setText(text);
-		toast.show();
-	}
+    /**
+     * @param text 显示内容
+     * @param t    显示时间
+     */
+    public static void show(String text, int t) {
+        //toast.cancel();
+        toast.setDuration(t);
+        toast.setText(text);
+        toast.show();
+    }
 
-	public static void show(int textRes, int t) {
-		// toast.cancel();
-		toast.setDuration(t);
-		toast.setText(textRes);
-		toast.show();
-	}
+    public static void show(int textRes, int t) {
+        // toast.cancel();
+        toast.setDuration(t);
+        toast.setText(textRes);
+        toast.show();
+    }
 }

@@ -8,13 +8,13 @@ package org.liushui.mycommons.android.exception;
  */
 public class McException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public McException() {
-		super();
-	}
+    public McException() {
+        super();
+    }
 
-	public McException(String message) {
-		super(message);
-	}
+    public McException(String message) {
+        super(message);
+    }
 }

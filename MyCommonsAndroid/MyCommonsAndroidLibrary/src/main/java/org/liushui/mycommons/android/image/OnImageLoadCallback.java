@@ -4,5 +4,5 @@ import android.graphics.Bitmap;
 
 public interface OnImageLoadCallback {
 
-	public void onCallback(ImageLoadItem item, Bitmap bitmap);
+    public void onCallback(ImageLoadItem item, Bitmap bitmap);
 }

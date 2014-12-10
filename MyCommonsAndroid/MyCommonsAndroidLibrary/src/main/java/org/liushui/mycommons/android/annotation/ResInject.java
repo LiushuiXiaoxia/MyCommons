@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ResInject {
-	int id();
+    int id();
 
-	ResType type();
+    ResType type();
 }

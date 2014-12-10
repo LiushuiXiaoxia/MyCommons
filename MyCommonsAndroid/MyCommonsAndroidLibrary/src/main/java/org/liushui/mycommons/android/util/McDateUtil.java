@@ -16,19 +16,19 @@ import android.text.format.DateFormat;
  */
 public class McDateUtil {
 
-	public static String format(String format, Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat(format);
-		return sdf.format(date);
-	}
+    public static String format(String format, Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.format(date);
+    }
 
-	public static String formatDateString(Date date) {
-		Context context = McApplication.getMcAppInstance();
-		java.text.DateFormat dateFormat = DateFormat.getDateFormat(context);
-		java.text.DateFormat timeFormat = DateFormat.getTimeFormat(context);
-		return dateFormat.format(date) + " " + timeFormat.format(date);
-	}
+    public static String formatDateString(Date date) {
+        Context context = McApplication.getMcAppInstance();
+        java.text.DateFormat dateFormat = DateFormat.getDateFormat(context);
+        java.text.DateFormat timeFormat = DateFormat.getTimeFormat(context);
+        return dateFormat.format(date) + " " + timeFormat.format(date);
+    }
 
-	public static String formatDateString(long time) {
-		return formatDateString(new Date(time));
-	}
+    public static String formatDateString(long time) {
+        return formatDateString(new Date(time));
+    }
 }

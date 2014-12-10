@@ -7,11 +7,11 @@ import android.os.Message;
  */
 public interface OnMsgCallback {
 
-	/**
-	 * 处理消息
-	 * 
-	 * @param msg
-	 * @return 返回是否消费了消息
-	 */
-	boolean handleMsg(Message msg);
+    /**
+     * 处理消息
+     *
+     * @param msg
+     * @return 返回是否消费了消息
+     */
+    boolean handleMsg(Message msg);
 }

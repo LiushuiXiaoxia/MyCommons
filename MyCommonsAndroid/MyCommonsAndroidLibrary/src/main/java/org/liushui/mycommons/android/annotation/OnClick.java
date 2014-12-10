@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OnClick {
 
-	public int[] value();
+    public int[] value();
 
-	public int parentId() default 0;
+    public int parentId() default 0;
 }

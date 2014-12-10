@@ -2,7 +2,7 @@ package org.liushui.mycommons.android.image;
 
 public class ImageLoaderConfig {
 
-	public String imageStorePath;
+    public String imageStorePath;
 
-	public ILoadInterceptListener interceptListener;
+    public ILoadInterceptListener interceptListener;
 }

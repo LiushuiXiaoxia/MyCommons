@@ -10,19 +10,19 @@ import android.view.View.OnTouchListener;
 
 public class OnTouchHelper extends BaseHelper<OnTouch> {
 
-	public OnTouchHelper(Object obj, View container) {
-		super(obj, container);
-	}
+    public OnTouchHelper(Object obj, View container) {
+        super(obj, container);
+    }
 
-	public void doHelp(OnTouch t, Field field, String fieldName, Object fieldValue) {
-		int[] values = t.value();
-		int parentId = t.parentId();
+    public void doHelp(OnTouch t, Field field, String fieldName, Object fieldValue) {
+        int[] values = t.value();
+        int parentId = t.parentId();
 
-		for (int id : values) {
-			View view = findView(id, parentId, fieldName);
-			if (view != null) {
-				view.setOnTouchListener((OnTouchListener) fieldValue);
-			}
-		}
-	}
+        for (int id : values) {
+            View view = findView(id, parentId, fieldName);
+            if (view != null) {
+                view.setOnTouchListener((OnTouchListener) fieldValue);
+            }
+        }
+    }
 }

@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OnTouch {
-	int[] value();
+    int[] value();
 
-	int parentId() default 0;
+    int parentId() default 0;
 }
