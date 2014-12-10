@@ -38,7 +38,7 @@ public class ImageLoader {
             super();
             this.item = item;
             this.callback = callback;
-            url = item.url;
+            url = item.getUrl();
         }
 
         public void run() {
