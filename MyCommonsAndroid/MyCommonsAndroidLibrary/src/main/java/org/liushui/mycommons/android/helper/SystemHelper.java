@@ -9,6 +9,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 public class SystemHelper {
+
+    private SystemHelper() {
+
+    }
+
     public static int getTitleBarHeight() {
         int id = 0;
         try {
@@ -29,13 +34,11 @@ public class SystemHelper {
 
     public static boolean hideSoftInput(View v) {
         InputMethodManager imm = (InputMethodManager) McApplication.getMcAppInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
-        boolean b = imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-        return b;
+        return imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
     public static boolean showSoftInput(View v) {
         InputMethodManager imm = (InputMethodManager) McApplication.getMcAppInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
-        boolean b = imm.showSoftInput(v, 0);
-        return b;
+        return imm.showSoftInput(v, 0);
     }
 }

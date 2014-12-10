@@ -5,6 +5,10 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 public class McApkUtil {
 
+    private McApkUtil() {
+
+    }
+
     public static int getVersionCode(Context context) {
         int code = 0;
         try {

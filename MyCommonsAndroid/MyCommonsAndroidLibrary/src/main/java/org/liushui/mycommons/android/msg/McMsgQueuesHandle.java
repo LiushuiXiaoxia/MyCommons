@@ -72,7 +72,7 @@ public class McMsgQueuesHandle {
         }
         for (int i = callbacks.size() - 1; i >= 0; i--) {
             MsgCallbackImpl impl = callbacks.get(i);
-            if (impl.callback.equals(callback)) {
+            if (impl.getCallback().equals(callback)) {
                 callbacks.remove(i);
             }
         }

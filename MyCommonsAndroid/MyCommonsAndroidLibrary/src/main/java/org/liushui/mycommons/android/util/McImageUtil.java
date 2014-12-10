@@ -34,6 +34,10 @@ import android.graphics.drawable.Drawable;
  */
 public class McImageUtil {
 
+    private McImageUtil() {
+
+    }
+
     /**
      * bitmap2Bytes
      *
@@ -71,8 +75,7 @@ public class McImageUtil {
         float scaleWidth = ((float) width / w);
         float scaleHeight = ((float) height / h);
         matrix.postScale(scaleWidth, scaleHeight);
-        Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
-        return newbmp;
+        return Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
     }
 
     /**
@@ -147,8 +150,7 @@ public class McImageUtil {
      */
     public static Drawable bitmap2Drawable(Bitmap b, Resources res) {
         // 因为BtimapDrawable是Drawable的子类，最终直接使用bd对象即可
-        BitmapDrawable bd = new BitmapDrawable(res, b);
-        return bd;
+        return new BitmapDrawable(res, b);
     }
 
     /**
@@ -220,7 +222,7 @@ public class McImageUtil {
     public static void saveBitmap(String path, Bitmap bitmap) throws IOException {
         if (path != null && bitmap != null) {
             File file = new File(path);
-            if (!file.exists()) {// 如果文件夹不存在则创建一个新的文件
+            if (!file.exists()) { // 如果文件夹不存在则创建一个新的文件
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             }
@@ -229,7 +231,7 @@ public class McImageUtil {
             //获取文件名
             String fileName = file.getName();
             //取出文件的格式名
-            String endName = fileName.substring(fileName.lastIndexOf(".") + 1);
+            String endName = fileName.substring(fileName.lastIndexOf('.') + 1);
             if ("png".equalsIgnoreCase(endName)) {
                 //bitmap的压缩格式
                 bitmap.compress(CompressFormat.PNG, 100, write);

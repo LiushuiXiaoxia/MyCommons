@@ -8,7 +8,11 @@ import org.liushui.mycommons.android.log.McLog;
 
 public class ThreadWorker {
 
-    static ExecutorService executorService;
+    private ThreadWorker() {
+
+    }
+
+    private static ExecutorService executorService;
 
     public static void execute(Runnable runnable) {
         submit(runnable);
@@ -18,12 +22,13 @@ public class ThreadWorker {
         if (executorService == null) {
             executorService = Executors.newFixedThreadPool(8);
         }
+        Future<?> f = null;
         try {
-            Future<?> f = executorService.submit(runnable);
+            f = executorService.submit(runnable);
             return f;
         } catch (Exception e) {
             McLog.e("Threadwork exception", e);
         }
-        return null;
+        return f;
     }
 }

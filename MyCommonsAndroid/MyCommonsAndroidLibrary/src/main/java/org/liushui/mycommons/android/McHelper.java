@@ -6,6 +6,10 @@ import org.liushui.mycommons.android.annotation.OnMsg;
 
 public class McHelper {
 
+    private McHelper() {
+
+    }
+
     public static OnMsg makeOnMsg(final int[] msg, final boolean ui, final boolean useLast) {
         return new OnMsg() {
 

@@ -16,6 +16,10 @@ import android.text.format.DateFormat;
  */
 public class McDateUtil {
 
+    private McDateUtil() {
+
+    }
+
     public static String format(String format, Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(date);

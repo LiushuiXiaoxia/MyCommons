@@ -20,11 +20,11 @@ public class PreferenceInjectHelper extends BaseHelper<ViewInject> {
         if (viewId == 0) {
             viewId = t.id();
         }
-        String msg = String.format("%s can't find %s (pId = %s, vId = %s)", container, fieldName, parentId, viewId);
+        String msg = String.format("%s can't find %s (pId = %s, vId = %s)", getContainer(), fieldName, parentId, viewId);
         try {
             View view = findView(viewId, parentId, fieldName);
             field.setAccessible(true);
-            field.set(obj, view);
+            field.set(getObj(), view);
         } catch (Exception e) {
             McLog.e(msg);
         }

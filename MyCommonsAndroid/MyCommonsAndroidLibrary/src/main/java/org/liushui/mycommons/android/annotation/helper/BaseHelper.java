@@ -8,8 +8,8 @@ import org.liushui.mycommons.android.log.McLog;
 import android.view.View;
 
 public abstract class BaseHelper<T extends Annotation> {
-    protected Object obj;
-    protected View container;
+    private Object obj;
+    private View container;
 
     public BaseHelper(Object obj, View container) {
         super();
@@ -33,6 +33,14 @@ public abstract class BaseHelper<T extends Annotation> {
             McLog.e(msg);
         }
         return v;
+    }
+
+    public Object getObj() {
+        return obj;
+    }
+
+    public View getContainer() {
+        return container;
     }
 
     public abstract void doHelp(T t, Field field, String fieldName, Object fieldValue);

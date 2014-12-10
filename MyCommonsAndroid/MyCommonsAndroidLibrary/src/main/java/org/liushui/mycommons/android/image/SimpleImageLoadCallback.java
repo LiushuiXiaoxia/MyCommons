@@ -5,8 +5,8 @@ import android.widget.ImageView;
 
 public class SimpleImageLoadCallback implements OnImageLoadCallback {
 
-    ImageView icon;
-    int loadFailImage;
+    private ImageView icon;
+    private int loadFailImage;
 
     public SimpleImageLoadCallback(ImageView iv, int image) {
         icon = iv;

@@ -1,11 +1,10 @@
 package org.liushui.mycommons.android.base;
 
-import org.liushui.mycommons.android.log.McLog;
-
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
+import org.liushui.mycommons.android.log.McLog;
 
 /**
  * Title: BaseV4FragmentActivity.java<br>
@@ -15,8 +14,6 @@ import android.support.v4.app.FragmentActivity;
  */
 public abstract class BaseV4FragmentActivity extends FragmentActivity {
 
-    protected Context context;
-
     /**
      * (non-Javadoc)
      *
@@ -24,7 +21,6 @@ public abstract class BaseV4FragmentActivity extends FragmentActivity {
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this;
         McLog.md(this, "onCreate");
     }
 

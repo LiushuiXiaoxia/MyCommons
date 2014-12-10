@@ -2,6 +2,10 @@ package org.liushui.mycommons.android;
 
 public class McInterface {
 
+    private McInterface() {
+
+    }
+
     static final int version = 2;
     static final String name = "v1.0.2";
 

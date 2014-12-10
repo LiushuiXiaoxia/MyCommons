@@ -9,7 +9,12 @@ import java.security.MessageDigest;
  * Version:v1.0
  */
 public class McMd5Util {
-    public final static String encryptMd5String(String s) {
+
+    private McMd5Util() {
+
+    }
+
+    public static final String encryptMd5String(String s) {
         try {
             byte[] btInput = s.getBytes();
             MessageDigest mdInst = MessageDigest.getInstance("MD5");

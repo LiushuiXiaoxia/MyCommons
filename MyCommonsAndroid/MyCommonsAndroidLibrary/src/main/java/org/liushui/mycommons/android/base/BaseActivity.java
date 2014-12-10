@@ -1,11 +1,10 @@
 package org.liushui.mycommons.android.base;
 
-import org.liushui.mycommons.android.log.McLog;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+
+import org.liushui.mycommons.android.log.McLog;
 
 /**
  * Title: BaseActivity.java<br>
@@ -15,8 +14,6 @@ import android.os.Bundle;
  */
 public abstract class BaseActivity extends Activity {
 
-    protected Context context;
-
     /**
      * (non-Javadoc)
      *
@@ -24,7 +21,6 @@ public abstract class BaseActivity extends Activity {
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this;
         McLog.md(this, "onCreate");
     }
 

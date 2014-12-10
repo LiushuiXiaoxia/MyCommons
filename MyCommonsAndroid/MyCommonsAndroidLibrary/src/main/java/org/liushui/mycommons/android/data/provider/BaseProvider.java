@@ -1,17 +1,16 @@
 package org.liushui.mycommons.android.data.provider;
 
-import java.util.Arrays;
-
-import org.liushui.mycommons.android.log.McLog;
-
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+
+import org.liushui.mycommons.android.log.McLog;
+
+import java.util.Arrays;
 
 /**
  * Title: BaseProvider.java<br>
@@ -23,10 +22,8 @@ public abstract class BaseProvider extends ContentProvider {
 
     protected static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-    protected Context mContext;
 
     public boolean onCreate() {
-        this.mContext = getContext();
         McLog.m(this, "onCreate");
         SQLiteDatabase db = getReadableDatabase();
         boolean r = db != null;

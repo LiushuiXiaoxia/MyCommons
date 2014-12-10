@@ -11,6 +11,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 public class ResLoader {
+
+    private ResLoader() {
+
+    }
+
     public static Object loadRes(ResType type, Context context, int id) {
         if (context == null || id < 1)
             return null;
@@ -62,6 +67,8 @@ public class ResLoader {
             case Xml: {
                 return getXml(context, id);
             }
+            default:
+                break;
         }
         return null;
     }

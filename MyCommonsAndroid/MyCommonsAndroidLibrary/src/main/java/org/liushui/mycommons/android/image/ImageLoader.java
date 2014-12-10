@@ -30,9 +30,9 @@ public class ImageLoader {
     }
 
     class LoadImageRunnable implements Runnable {
-        ImageLoadItem item;
-        OnImageLoadCallback callback;
-        String url;
+        private ImageLoadItem item;
+        private OnImageLoadCallback callback;
+        private String url;
 
         public LoadImageRunnable(ImageLoadItem item, OnImageLoadCallback callback) {
             super();

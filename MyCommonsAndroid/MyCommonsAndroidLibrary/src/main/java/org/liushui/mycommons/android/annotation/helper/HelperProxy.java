@@ -41,10 +41,10 @@ import org.liushui.mycommons.android.exception.McException;
 import android.view.View;
 
 class HelperProxy {
-    Object obj;
-    View container;
-    Field[] fields;
-    Map<Class<? extends Annotation>, BaseHelper<? extends Annotation>> map;
+    private Object obj;
+    private View container;
+    private Field[] fields;
+    private Map<Class<? extends Annotation>, BaseHelper<? extends Annotation>> map;
 
     HelperProxy(Object obj, View container) {
         super();

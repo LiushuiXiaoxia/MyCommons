@@ -19,9 +19,9 @@ public class ImageLoaderUtils {
 
     static final int DEF_LOAD_FAIL_IMAGE = -1;
 
-    static String sdcard = "";
-    static ImageLoaderConfig config;
-    static String imageStorePath;
+    private static String sdcard = "";
+    private static ImageLoaderConfig config;
+    private static String imageStorePath;
 
     static {
         sdcard = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -30,8 +30,8 @@ public class ImageLoaderUtils {
     }
 
     static void check() {
-        config.imageStorePath = sdcard + "/" + McApplication.getMcAppInstance().getPackageName() + "/image/";
-        File f = new File(config.imageStorePath);
+        config.setImageStorePath(sdcard + "/" + McApplication.getMcAppInstance().getPackageName() + "/image/");
+        File f = new File(config.getImageStorePath());
         if (!f.exists()) {
             f.mkdirs();
         }
@@ -44,10 +44,10 @@ public class ImageLoaderUtils {
             if (config == null) {
                 break;
             }
-            if (config.interceptListener == null) {
+            if (config.getInterceptListener() == null) {
                 break;
             }
-            ret = config.interceptListener.intercept();
+            ret = config.getInterceptListener().intercept();
         } while (false);
         return ret;
     }
@@ -92,8 +92,7 @@ public class ImageLoaderUtils {
         Options opt = new Options();
         opt.inTargetDensity = McApplication.DIMEN_DPI;
         opt.inTargetDensity = DisplayMetrics.DENSITY_XHIGH;
-        Bitmap b = BitmapFactory.decodeFile(file, opt);
-        return b;
+        return BitmapFactory.decodeFile(file, opt);
     }
 
     public static boolean isImageExists(String url) {

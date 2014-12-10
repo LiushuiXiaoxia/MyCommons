@@ -26,12 +26,13 @@ import android.view.WindowManager;
  *        /&gt;
  * 调用方式: McApplication mcApplication = McApplication.getMcAppInstance();
  * </pre>
- * <br/>
+ * <p/>
  * <pre>
  * 或者继承McApplication
  * public class AppContext extends McApplication&lt;AppContext&gt; {
  *
  * }
+ *
  * 调用方式: AppContext appContext = AppContext.getMcAppInstance();
  * </pre>
  * Title: McApplication.java<br>
@@ -51,9 +52,7 @@ public class McApplication<T extends McApplication<?>> extends Application {
         if (instance == null) {
             throw new McException("McApplication is null.");
         }
-        @SuppressWarnings("unchecked")
-        F f = (F) instance;
-        return f;
+        return (F) instance;
     }
 
     /**
@@ -118,8 +117,8 @@ public class McApplication<T extends McApplication<?>> extends Application {
 
     private void init() {
         int[] size = getScreenSize();
-        SCREEN_WIDTH = size[0];// display.getWidth();
-        SCREEN_HEIGHT = size[1];// display.getHeight();
+        SCREEN_WIDTH = size[0]; // display.getWidth();
+        SCREEN_HEIGHT = size[1]; // display.getHeight();
         if (SCREEN_WIDTH > SCREEN_HEIGHT) {
             int t = SCREEN_HEIGHT;
             SCREEN_HEIGHT = SCREEN_WIDTH;

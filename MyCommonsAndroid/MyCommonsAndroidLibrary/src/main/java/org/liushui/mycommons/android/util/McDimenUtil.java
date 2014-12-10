@@ -20,6 +20,10 @@ import android.view.ViewGroup;
  */
 public class McDimenUtil {
 
+    private McDimenUtil() {
+
+    }
+
     public static class DimenSize implements Serializable {
 
         private static final long serialVersionUID = 1L;
@@ -52,14 +56,14 @@ public class McDimenUtil {
     }
 
     public static DimenSize getSizeByWrap(View view) {
+        DimenSize size = null;
         if (view != null) {
             int w = MeasureSpec.makeMeasureSpec(10000, MeasureSpec.AT_MOST);
             int h = MeasureSpec.makeMeasureSpec(10000, MeasureSpec.AT_MOST);
             view.measure(w, h);
-            DimenSize size = new DimenSize(view.getMeasuredWidth(), view.getMeasuredHeight());
-            return size;
+            size = new DimenSize(view.getMeasuredWidth(), view.getMeasuredHeight());
         }
-        return null;
+        return size;
     }
 
     public static void setViewSize(View view, DimenSize size) {
@@ -81,28 +85,26 @@ public class McDimenUtil {
         BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(context.getResources(), drawableId);
-        DimenSize size = new DimenSize(opt.outWidth, opt.outHeight);
-        return size;
+        return new DimenSize(opt.outWidth, opt.outHeight);
     }
 
     public static DimenSize getBitmapSizeFromAsetts(Context context, String path) {
         BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inJustDecodeBounds = true;
+        DimenSize size = null;
         try {
             BitmapFactory.decodeStream(context.getAssets().open(path), null, opt);
-            DimenSize size = new DimenSize(opt.outWidth, opt.outHeight);
-            return size;
+            size = new DimenSize(opt.outWidth, opt.outHeight);
         } catch (IOException e) {
         }
-        return null;
+        return size;
     }
 
     public static DimenSize getBitmapSizeFromFile(String path) {
         BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(path, opt);
-        DimenSize size = new DimenSize(opt.outWidth, opt.outHeight);
-        return size;
+        return new DimenSize(opt.outWidth, opt.outHeight);
     }
 
     public static int px2Dp(int px) {

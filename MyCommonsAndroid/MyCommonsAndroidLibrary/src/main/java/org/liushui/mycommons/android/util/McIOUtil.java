@@ -15,12 +15,17 @@ import java.io.OutputStream;
  * Version:v1.0
  */
 public class McIOUtil {
+
+    private McIOUtil() {
+
+    }
+
     /**
      * 复制
      *
-     * @param from   源
-     * @param to     目标
-     * @param delete 目标文件存在，是否删除替换
+     * @param inFile  源
+     * @param outFile 目标
+     * @param delete  目标文件存在，是否删除替换
      * @throws Exception
      */
     public static void copy(File inFile, File outFile, boolean delete) throws Exception {
@@ -30,13 +35,13 @@ public class McIOUtil {
     /**
      * 复制
      *
-     * @param from   源
-     * @param to     目标
-     * @param delete 目标文件存在，是否删除替换
+     * @param in      源
+     * @param outFile 目标
+     * @param delete  目标文件存在，是否删除替换
      * @throws Exception
      */
     public static void copy(InputStream in, File outFile, boolean delete) throws Exception {
-        if (outFile.exists() && delete == false) {
+        if (outFile.exists() && !delete) {
             // 存在且不删除，则不复制
             return;
         }

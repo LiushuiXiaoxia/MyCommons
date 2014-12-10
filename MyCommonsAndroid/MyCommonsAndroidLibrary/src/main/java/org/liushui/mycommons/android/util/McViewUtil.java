@@ -2,13 +2,19 @@ package org.liushui.mycommons.android.util;
 
 import android.view.View;
 
+import org.liushui.mycommons.android.log.McLog;
+
 public class McViewUtil {
+
+    private McViewUtil() {
+
+    }
 
     public static void show(View view) {
         if (view != null) {
             view.setVisibility(View.VISIBLE);
         } else {
-
+            McLog.i("view is null.");
         }
     }
 
@@ -24,6 +30,7 @@ public class McViewUtil {
         if (view != null) {
             view.setVisibility(View.GONE);
         } else {
+            McLog.i("view is null.");
 
         }
     }
@@ -33,7 +40,7 @@ public class McViewUtil {
             int i = b ? View.VISIBLE : View.GONE;
             view.setVisibility(i);
         } else {
-
+            McLog.i("view is null.");
         }
     }
 
@@ -42,7 +49,7 @@ public class McViewUtil {
             int i = b ? View.VISIBLE : View.INVISIBLE;
             view.setVisibility(i);
         } else {
-
+            McLog.i("view is null.");
         }
     }
 
@@ -50,7 +57,7 @@ public class McViewUtil {
         if (view != null) {
             view.setVisibility(View.INVISIBLE);
         } else {
-
+            McLog.i("view is null.");
         }
     }
 

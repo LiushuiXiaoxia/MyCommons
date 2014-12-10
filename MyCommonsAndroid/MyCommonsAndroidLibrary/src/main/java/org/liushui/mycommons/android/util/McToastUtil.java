@@ -13,7 +13,15 @@ import android.widget.Toast;
  */
 public class McToastUtil {
 
-    static Toast toast = Toast.makeText(McApplication.getMcAppInstance(), "", Toast.LENGTH_SHORT);
+    private McToastUtil() {
+
+    }
+
+    private static Toast toast;
+
+    static {
+        toast = Toast.makeText(McApplication.getMcAppInstance(), "", Toast.LENGTH_SHORT);
+    }
 
     public static void show(String text) {
         show(text, Toast.LENGTH_LONG);

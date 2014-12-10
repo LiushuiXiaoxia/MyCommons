@@ -13,19 +13,19 @@ public @interface OnMsg {
      *
      * @return
      */
-    public boolean ui() default true;
+    boolean ui() default true;
 
     /**
      * 监听的msg
      *
      * @return
      */
-    public int[] msg();
+    int[] msg();
 
     /**
      * 是否使用上一个事件
      *
      * @return
      */
-    public boolean useLastMsg() default true;
+    boolean useLastMsg() default true;
 }

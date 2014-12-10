@@ -13,6 +13,10 @@ import android.view.View;
  */
 public class InjectHelper {
 
+    private InjectHelper() {
+
+    }
+
     /**
      * 初始化
      *

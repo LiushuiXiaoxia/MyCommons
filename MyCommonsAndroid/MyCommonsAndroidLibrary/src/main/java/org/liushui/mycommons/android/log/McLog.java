@@ -16,14 +16,19 @@ import android.util.Log;
  */
 public class McLog {
 
-    static int LOG_WIDTH_LENGTH = 70;
+    private McLog() {
 
-    static String sTag = "McLog";
-    static boolean sIsDebug = true;
+    }
+
+    private static final int LOG_WIDTH_LENGTH = 70;
+
+    private static String sTag = "McLog";
+    private static boolean sIsDebug = true;
 
     static {
         sTag = McApplication.getMcAppInstance().getPackageName();
     }
+
 
     public static void setDebug(boolean isDebug) {
         sIsDebug = isDebug;
@@ -111,8 +116,8 @@ public class McLog {
         i(caller);
     }
 
-    public static void m(Class<?> clazz, String FIELD) {
-        m(clazz.getName(), FIELD);
+    public static void m(Class<?> clazz, String method) {
+        m(clazz.getName(), method);
     }
 
     public static void m(Object obj, String method) {

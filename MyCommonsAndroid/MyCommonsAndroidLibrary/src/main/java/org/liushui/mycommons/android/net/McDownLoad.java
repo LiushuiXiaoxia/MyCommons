@@ -18,6 +18,10 @@ import org.liushui.mycommons.android.log.McLog;
  */
 public class McDownLoad {
 
+    private McDownLoad() {
+
+    }
+
     /**
      * 根据url，进行http下载
      *

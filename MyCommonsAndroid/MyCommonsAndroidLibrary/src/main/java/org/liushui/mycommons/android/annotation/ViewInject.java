@@ -15,14 +15,14 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ViewInject {
 
-    public int value() default 0;
+    int value() default 0;
 
     /**
      * 使用value代替
      *
      * @return
      */
-    public int id() default 0;
+    int id() default 0;
 
-    public int parentId() default 0;
+    int parentId() default 0;
 }

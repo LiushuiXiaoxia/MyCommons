@@ -15,11 +15,14 @@ import android.net.NetworkInfo;
  */
 public class McUtilNet {
 
+    private McUtilNet() {
+
+    }
+
     static NetworkInfo getInfo() {
         Application app = McApplication.getMcAppInstance();
         ConnectivityManager conManager = (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = conManager.getActiveNetworkInfo();
-        return networkInfo;
+        return conManager.getActiveNetworkInfo();
     }
 
     /**
