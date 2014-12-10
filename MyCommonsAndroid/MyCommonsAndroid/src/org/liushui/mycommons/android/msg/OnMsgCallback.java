@@ -9,6 +9,7 @@ public interface OnMsgCallback {
 
 	/**
 	 * 处理消息
+	 * 
 	 * @param msg
 	 * @return 返回是否消费了消息
 	 */

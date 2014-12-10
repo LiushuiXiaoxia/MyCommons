@@ -14,16 +14,17 @@ import org.liushui.mycommons.android.log.McLog;
  * Title: UtilDownLoad.java<br>
  * author:xiaqiulei@gmail.com <br>
  * Date: 2012-7-31<br>
- * Version:v1.0
- * 下载工具类
+ * Version:v1.0 下载工具类
  */
 public class McDownLoad {
 
 	/**
 	 * 根据url，进行http下载
 	 * 
-	 * @param url 下载地址
-	 * @param file 保存的路径
+	 * @param url
+	 *            下载地址
+	 * @param file
+	 *            保存的路径
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */

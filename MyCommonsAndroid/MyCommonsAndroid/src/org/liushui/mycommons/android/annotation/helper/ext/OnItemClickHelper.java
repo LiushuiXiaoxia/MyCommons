@@ -10,30 +10,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class OnItemClickHelper extends BaseHelper<OnItemClick>
-{
+public class OnItemClickHelper extends BaseHelper<OnItemClick> {
 
-	public OnItemClickHelper(Object obj, View container)
-	{
+	public OnItemClickHelper(Object obj, View container) {
 		super(obj, container);
 	}
 
-	public void doHelp(OnItemClick t, Field field, String fieldName, Object fieldValue)
-	{
+	public void doHelp(OnItemClick t, Field field, String fieldName, Object fieldValue) {
 		int[] values = t.value();
 		int parentId = t.parentId();
 
-		for (int id : values)
-		{
+		for (int id : values) {
 			View view = findView(id, parentId, fieldName);
-			if (view != null)
-			{
-				if (view instanceof AdapterView)
-				{
+			if (view != null) {
+				if (view instanceof AdapterView) {
 					AdapterView<?> cb = (AdapterView<?>) view;
 					cb.setOnItemClickListener((OnItemClickListener) fieldValue);
-				} else
-				{
+				} else {
 					McLog.w("view(" + view + ") is not instance of AdapterView.");
 				}
 			}

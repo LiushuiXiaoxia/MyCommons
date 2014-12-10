@@ -7,34 +7,28 @@ import org.liushui.mycommons.android.log.McLog;
 
 import android.view.View;
 
-public abstract class BaseHelper<T extends Annotation>
-{
+public abstract class BaseHelper<T extends Annotation> {
 	protected Object obj;
 	protected View container;
 
-	public BaseHelper(Object obj, View container)
-	{
+	public BaseHelper(Object obj, View container) {
 		super();
 		this.obj = obj;
 		this.container = container;
 	}
 
-	protected View findView(int id, int pid, String name)
-	{
+	protected View findView(int id, int pid, String name) {
 		View temp = container;
-		if (pid != 0)
-		{
+		if (pid != 0) {
 			temp = container.findViewById(pid);
-			if (temp == null)
-			{
+			if (temp == null) {
 				String msg = String.format("field(name = %s ,id = %s) can't find parent (pId = %s)", name, id, pid);
 				McLog.e(msg);
 				return null;
 			}
 		}
 		View v = temp.findViewById(id);
-		if (v == null)
-		{
+		if (v == null) {
 			String msg = String.format("%s can't find %s (pId = %s, vId = %s)", container, name, pid, id);
 			McLog.e(msg);
 		}

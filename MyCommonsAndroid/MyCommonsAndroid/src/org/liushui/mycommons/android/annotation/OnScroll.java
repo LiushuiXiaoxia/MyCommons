@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OnScroll
-{
+public @interface OnScroll {
 	int[] value();
 
 	int parentId() default 0;

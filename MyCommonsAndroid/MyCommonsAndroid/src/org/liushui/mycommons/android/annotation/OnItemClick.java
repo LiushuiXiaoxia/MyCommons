@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OnItemClick
-{
+public @interface OnItemClick {
 	int[] value();
 
 	int parentId() default 0;

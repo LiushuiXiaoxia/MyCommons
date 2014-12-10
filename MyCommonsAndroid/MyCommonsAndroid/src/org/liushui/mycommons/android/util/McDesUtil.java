@@ -19,8 +19,10 @@ public class McDesUtil {
 	/**
 	 * 加密
 	 * 
-	 * @param key 密钥
-	 * @param str 要加密的字符串
+	 * @param key
+	 *            密钥
+	 * @param str
+	 *            要加密的字符串
 	 * @return 加密后的字符串
 	 */
 	public static String encryptDesString(String key, String str) {
@@ -30,8 +32,10 @@ public class McDesUtil {
 	/**
 	 * 解密
 	 * 
-	 * @param key 密钥
-	 * @param str des加密的字符串
+	 * @param key
+	 *            密钥
+	 * @param str
+	 *            des加密的字符串
 	 * @return 解密后的字符串
 	 */
 	public static String decryptDesString(String key, String str) {

@@ -8,16 +8,13 @@ import org.liushui.mycommons.android.log.McLog;
 
 import android.view.View;
 
-public class ViewInjectHelper extends BaseHelper<ViewInject>
-{
+public class ViewInjectHelper extends BaseHelper<ViewInject> {
 
-	public ViewInjectHelper(Object obj, View container)
-	{
+	public ViewInjectHelper(Object obj, View container) {
 		super(obj, container);
 	}
 
-	public void doHelp(ViewInject t, Field field, String fieldName, Object fieldValue)
-	{
+	public void doHelp(ViewInject t, Field field, String fieldName, Object fieldValue) {
 		int viewId = t.value();
 		int parentId = t.parentId();
 		if (viewId == 0) {

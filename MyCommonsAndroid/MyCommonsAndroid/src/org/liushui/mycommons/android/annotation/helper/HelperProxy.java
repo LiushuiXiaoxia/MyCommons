@@ -40,20 +40,17 @@ import org.liushui.mycommons.android.exception.McException;
 
 import android.view.View;
 
-class HelperProxy
-{
+class HelperProxy {
 	Object obj;
 	View container;
 	Field[] fields;
 	Map<Class<? extends Annotation>, BaseHelper<? extends Annotation>> map;
 
-	HelperProxy(Object obj, View container)
-	{
+	HelperProxy(Object obj, View container) {
 		super();
 		this.obj = obj;
 		this.container = container;
-		if (container == null)
-		{
+		if (container == null) {
 			throw new McException("container is null.");
 		}
 
@@ -74,56 +71,44 @@ class HelperProxy
 		map.put(ViewInject.class, new ViewInjectHelper(obj, container));
 	}
 
-	void init()
-	{
+	void init() {
 		fields = obj.getClass().getDeclaredFields();
-		if (fields != null && fields.length > 0)
-		{
-			for (Field field : fields)
-			{
+		if (fields != null && fields.length > 0) {
+			for (Field field : fields) {
 				// 先取出字段的值和名称
 				field.setAccessible(true);
 				Object fieldValue = null;
 				String fieldName = null;
-				try
-				{
+				try {
 					fieldValue = field.get(obj);
 					fieldName = field.getName();
-				} catch (IllegalArgumentException e)
-				{
+				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
-				} catch (IllegalAccessException e)
-				{
+				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
 
 				// 所有的listener
-				for (Entry<Class<? extends Annotation>, BaseHelper<? extends Annotation>> en : map.entrySet())
-				{
+				for (Entry<Class<? extends Annotation>, BaseHelper<? extends Annotation>> en : map.entrySet()) {
 					Class<? extends Annotation> cls = en.getKey();
 					@SuppressWarnings("unchecked")
 					BaseHelper<Annotation> helper = (BaseHelper<Annotation>) en.getValue();
 
 					Annotation anno = field.getAnnotation(cls);
-					if (anno != null)
-					{
+					if (anno != null) {
 						helper.doHelp(anno, field, fieldName, fieldValue);
 					}
 				}
 
 				// 所有的资源
 				ResInject resInject = field.getAnnotation(ResInject.class);
-				if (resInject != null)
-				{
+				if (resInject != null) {
 					Object res = ResLoader.loadRes(resInject.type(), McApplication.getMcAppInstance(), resInject.id());
-					try
-					{
+					try {
 						field.set(obj, res);
-					} catch (IllegalArgumentException e)
-					{
+					} catch (IllegalArgumentException e) {
 						e.printStackTrace();
-					} catch (IllegalAccessException e)
-					{
+					} catch (IllegalAccessException e) {
 						e.printStackTrace();
 					}
 				}

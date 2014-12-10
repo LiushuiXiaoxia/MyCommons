@@ -4,7 +4,6 @@ import org.liushui.mycommons.android.McApplication;
 
 import android.widget.Toast;
 
-
 /**
  * McToastUtil.java<br/>
  * Date:2011-9-14 <br/>
@@ -27,9 +26,9 @@ public class McToastUtil {
 	/**
 	 * 
 	 * @param text
-	 *        显示内容
+	 *            显示内容
 	 * @param t
-	 *        显示时间
+	 *            显示时间
 	 */
 	public static void show(String text, int t) {
 		//toast.cancel();

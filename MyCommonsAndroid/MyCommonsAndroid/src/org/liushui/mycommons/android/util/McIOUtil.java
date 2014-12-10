@@ -18,9 +18,12 @@ public class McIOUtil {
 	/**
 	 * 复制
 	 * 
-	 * @param from 源
-	 * @param to 目标
-	 * @param delete 目标文件存在，是否删除替换
+	 * @param from
+	 *            源
+	 * @param to
+	 *            目标
+	 * @param delete
+	 *            目标文件存在，是否删除替换
 	 * @throws Exception
 	 */
 	public static void copy(File inFile, File outFile, boolean delete) throws Exception {
@@ -30,9 +33,12 @@ public class McIOUtil {
 	/**
 	 * 复制
 	 * 
-	 * @param from 源
-	 * @param to 目标
-	 * @param delete 目标文件存在，是否删除替换
+	 * @param from
+	 *            源
+	 * @param to
+	 *            目标
+	 * @param delete
+	 *            目标文件存在，是否删除替换
 	 * @throws Exception
 	 */
 	public static void copy(InputStream in, File outFile, boolean delete) throws Exception {
@@ -47,9 +53,12 @@ public class McIOUtil {
 	/**
 	 * 重命名
 	 * 
-	 * @param from 原文件
-	 * @param to 目标文件
-	 * @param delete 如果目标文件存在，是否删除
+	 * @param from
+	 *            原文件
+	 * @param to
+	 *            目标文件
+	 * @param delete
+	 *            如果目标文件存在，是否删除
 	 */
 	public static void rename(String from, String to, boolean delete) {
 		rename(new File(from), new File(to), delete);
@@ -58,9 +67,12 @@ public class McIOUtil {
 	/**
 	 * 重命名
 	 * 
-	 * @param from 原文件
-	 * @param to 目标文件
-	 * @param delete 如果目标文件存在，是否删除
+	 * @param from
+	 *            原文件
+	 * @param to
+	 *            目标文件
+	 * @param delete
+	 *            如果目标文件存在，是否删除
 	 */
 	public static void rename(File from, File to, boolean delete) {
 		if (!from.exists()) {
@@ -89,8 +101,10 @@ public class McIOUtil {
 	/**
 	 * 复制
 	 * 
-	 * @param in 源
-	 * @param out 目标
+	 * @param in
+	 *            源
+	 * @param out
+	 *            目标
 	 * @throws Exception
 	 */
 	private static void copy(InputStream in, OutputStream out) throws Exception {

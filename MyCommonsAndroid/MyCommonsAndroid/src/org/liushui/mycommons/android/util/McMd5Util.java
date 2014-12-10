@@ -18,7 +18,7 @@ public class McMd5Util {
 			StringBuffer sb = new StringBuffer();
 			for (int i = 0; i < md.length; i++) {
 				int val = ((int) md[i]) & 0xff;
-				if (val < 16){
+				if (val < 16) {
 					sb.append("0");
 				}
 				sb.append(Integer.toHexString(val));

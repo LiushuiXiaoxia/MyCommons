@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OnRadioGroupCheckedChange
-{
+public @interface OnRadioGroupCheckedChange {
 	int[] value();
 
 	int parentId() default 0;

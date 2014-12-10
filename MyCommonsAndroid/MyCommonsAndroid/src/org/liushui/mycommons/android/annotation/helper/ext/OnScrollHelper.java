@@ -10,30 +10,23 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 
-public class OnScrollHelper extends BaseHelper<OnScroll>
-{
+public class OnScrollHelper extends BaseHelper<OnScroll> {
 
-	public OnScrollHelper(Object obj, View container)
-	{
+	public OnScrollHelper(Object obj, View container) {
 		super(obj, container);
 	}
 
-	public void doHelp(OnScroll t, Field field, String fieldName, Object fieldValue)
-	{
+	public void doHelp(OnScroll t, Field field, String fieldName, Object fieldValue) {
 		int[] values = t.value();
 		int parentId = t.parentId();
 
-		for (int id : values)
-		{
+		for (int id : values) {
 			View view = findView(id, parentId, fieldName);
-			if (view != null)
-			{
-				if (view instanceof AbsListView)
-				{
+			if (view != null) {
+				if (view instanceof AbsListView) {
 					AbsListView cb = (AbsListView) view;
 					cb.setOnScrollListener((OnScrollListener) fieldValue);
-				} else
-				{
+				} else {
 					McLog.w("view(" + view + ") is not instance of AbsListView.");
 				}
 			}

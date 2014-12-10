@@ -8,30 +8,24 @@ import org.liushui.mycommons.android.log.McLog;
 
 import android.view.View;
 
-public class PreferenceInjectHelper extends BaseHelper<ViewInject>
-{
+public class PreferenceInjectHelper extends BaseHelper<ViewInject> {
 
-	public PreferenceInjectHelper(Object obj, View container)
-	{
+	public PreferenceInjectHelper(Object obj, View container) {
 		super(obj, container);
 	}
 
-	public void doHelp(ViewInject t, Field field, String fieldName, Object fieldValue)
-	{
+	public void doHelp(ViewInject t, Field field, String fieldName, Object fieldValue) {
 		int viewId = t.value();
 		int parentId = t.parentId();
-		if (viewId == 0)
-		{
+		if (viewId == 0) {
 			viewId = t.id();
 		}
 		String msg = String.format("%s can't find %s (pId = %s, vId = %s)", container, fieldName, parentId, viewId);
-		try
-		{
+		try {
 			View view = findView(viewId, parentId, fieldName);
 			field.setAccessible(true);
 			field.set(obj, view);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			McLog.e(msg);
 		}
 	}

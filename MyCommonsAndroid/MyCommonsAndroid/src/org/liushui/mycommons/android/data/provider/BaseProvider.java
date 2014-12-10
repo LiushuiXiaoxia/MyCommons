@@ -121,6 +121,7 @@ public abstract class BaseProvider extends ContentProvider {
 
 	/**
 	 * 得到跟uri
+	 * 
 	 * @param uri
 	 * @return
 	 */

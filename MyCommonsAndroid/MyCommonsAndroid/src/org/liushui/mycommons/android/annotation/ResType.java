@@ -1,7 +1,6 @@
 package org.liushui.mycommons.android.annotation;
 
-public enum ResType
-{
+public enum ResType {
 	Animation, //
 	Boolean, //
 	Color, //
