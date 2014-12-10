@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyCommonsAndroid.iml" filepath="$PROJECT_DIR$/MyCommonsAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyCommonsAndroidDemo/MyCommonsAndroidDemo.iml" filepath="$PROJECT_DIR$/MyCommonsAndroidDemo/MyCommonsAndroidDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyCommonsAndroidLibrary/MyCommonsAndroidLibrary.iml" filepath="$PROJECT_DIR$/MyCommonsAndroidLibrary/MyCommonsAndroidLibrary.iml" />
+    </modules>
+  </component>
+</project>
+
