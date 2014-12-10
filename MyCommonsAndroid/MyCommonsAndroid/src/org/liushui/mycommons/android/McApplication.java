@@ -18,19 +18,25 @@ import android.view.WindowManager;
  * MyCommons全局上下文，使用是需要在App上下文中初始化<br>
  * 比如如下所示：
  * 
+ * 直接在AndroidManifest.xml中定义
+ * 
  * <pre>
- * public class AppContext extends McApplication {
- * 	private static AppContext instance;
+ * &lt;application
+ * ....
+ *        android:name="org.liushui.mycommons.android.McApplication"
+ * ....
+ *        /&gt;
+ * 调用方式McApplication mcApplication = McApplication.getMcAppInstance();
+ * </pre>
  * 
- * 	public static synchronized AppContext getInstance() {
- * 		return instance;
- * 	}
+ * <pre>
+ * 或者继承McApplication
  * 
- * 	public void onCreate() {
- * 		super.onCreate();
- * 		instance = this;
- * 	}
+ * public class AppContext extends McApplication&lt;AppContext&gt; {
+ * 
  * }
+ * 
+ * 调用方式AppContext appContext = AppContext.getMcAppInstance();
  * </pre>
  * 
  * Title: McApplication.java<br>
@@ -83,7 +89,7 @@ public class McApplication<T extends McApplication<?>> extends Application {
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);
 		instance = this;
-		handler = new Handler();
+		handler = new Handler(base.getMainLooper());
 
 		ApplicationInfo info = getApplicationInfo();
 		String lable = info.name;
