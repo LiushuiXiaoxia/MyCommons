@@ -2,9 +2,11 @@ MyCommons
 =========
 MyCommons是移动开发库，可以简单和快速的在此基础上完成新项目的开发。
 
-----
-#MyCommons交流平台
-  QQ群：153516800
+QQ群：153516800
+
+[网址地址](http://www.mycommons.cn/)
+[GitHub地址](https://github.com/LiushuiXiaoxia/MyCommons)
+[Csdn Blog地址](http://blog.csdn.net/guijiaoba/article/details/10241715)
 
 #MyCommons分类：
 * MyCommonsAndroid
@@ -16,8 +18,6 @@ MyCommons是移动开发库，可以简单和快速的在此基础上完成新�
 * View Inject
 * Msg Helper
 * 其他实用工具类
-
-Blog地址：http://blog.csdn.net/guijiaoba/article/details/10241715
 
 #MyCommonsAndroid 文档
 
