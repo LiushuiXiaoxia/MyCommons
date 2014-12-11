@@ -22,6 +22,7 @@ Blog地址：http://blog.csdn.net/guijiaoba/article/details/10241715
 #MyCommonsAndroid 文档
 
 ##MyCommonsAndroid代码结构
+```
 org.liushui.mycommons.android
 |+ annotation // 标注工具
 |+ base // 常用类的基类
@@ -34,12 +35,13 @@ org.liushui.mycommons.android
 McApplication.java // MyCommons的全局上下文
 McHelper.java // Mc全局帮助类
 McInterface.java // Mc接口介绍
+```
 
 ##MyCommonsAndroid集成
 
 ### McApplication
-McApplication在MyCommonsAndroid中算全局上下文，使用是需要在App上下文中初始化 比如如下所示：
-直接在AndroidManifest.xml中定义
+McApplication在MyCommonsAndroid中算全局上下文，使用是需要在App上下文中初始化,可选择如下2种方式集成:   
+* 直接在AndroidManifest.xml中定义
 ```
 <application
    ...
@@ -50,7 +52,7 @@ McApplication在MyCommonsAndroid中算全局上下文，使用是需要在App上
 调用方式:
 McApplication mcApplication = McApplication.getMcAppInstance();
 ```
-或者继承McApplication
+* 继承McApplication
 ```
 public class AppContext extends McApplication<AppContext> {
 }
