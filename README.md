@@ -1,6 +1,6 @@
 MyCommons
 =========
-MyCommons是常用的简单工具类，可以简单和快速的在此基础上完成新项目的开发。
+MyCommons是移动开发库，可以简单和快速的在此基础上完成新项目的开发。
 
 ----
 
@@ -13,14 +13,34 @@ MyCommons是常用的简单工具类，可以简单和快速的在此基础上�
 * MyCommonsIOS
 * MyCommonsWindow
 
-Csdn地址：http://blog.csdn.net/guijiaoba/article/details/10241715
+
 
 #MyCommonsAndroid 功能
 * View Inject
 * Msg Helper
 * 其他实用工具类
 
-#MyCommonsAndroid 集成文档
+Blog地址：http://blog.csdn.net/guijiaoba/article/details/10241715
+
+#MyCommonsAndroid 文档
+
+##MyCommonsAndroid代码结构
+org.liushui.mycommons.android
+|+ annotation // 标注工具
+|+ base // 常用类的基类
+|+ data // 数据库工具类
+|+ exception // 异常类
+|+ image // 图片工具类
+|+ log // 日志工具类
+|+ net // 网络工具类
+|+ util // 其他工具类
+McApplication.java // MyCommons的全局上下文
+McHelper.java // Mc全局帮助类
+McInterface.java // Mc接口介绍
+
+##MyCommonsAndroid集成
+
+### McApplication
 McApplication在MyCommonsAndroid中算全局上下文，使用是需要在App上下文中初始化 比如如下所示：
 直接在AndroidManifest.xml中定义
 
@@ -51,7 +71,7 @@ public class AppContext extends McApplication<AppContext> {
 AppContext appContext = AppContext.getMcAppInstance();
 ```
 
-## View Inject
+### View Inject
 参照MyCommonsAndroidDemo中代码MsgHelperFragment.java
 ```
 public class ViewInjectFragment extends CommonFragment {
@@ -110,7 +130,7 @@ fm_view_inject.xml
         android:text="CheckBox Check" />
 </LinearLayout>
 ```
-## MsgHelper
+### MsgHelper
 MsgHelperFragment.java
 ```
 public class MsgHelperFragment extends CommonFragment {
