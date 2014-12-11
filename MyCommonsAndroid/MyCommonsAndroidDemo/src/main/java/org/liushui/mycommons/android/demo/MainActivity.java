@@ -1,60 +1,50 @@
 package org.liushui.mycommons.android.demo;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import org.liushui.mycommons.android.annotation.OnItemClick;
+import org.liushui.mycommons.android.annotation.ViewInject;
+import org.liushui.mycommons.android.annotation.helper.InjectHelper;
+import org.liushui.mycommons.android.demo.common.CommonExtraParam;
+import org.liushui.mycommons.android.demo.common.CommonFragment;
+import org.liushui.mycommons.android.demo.common.CommonFragmentActivity;
+import org.liushui.mycommons.android.demo.ui.MsgHelperFragment;
+import org.liushui.mycommons.android.demo.ui.ViewInjectFragment;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
+
+    static String[] items = {"View Inject", "Msg Helper"};
+    static Class<? extends CommonFragment> clazz[] = new Class[]{ViewInjectFragment.class, MsgHelperFragment.class};
+
+    @ViewInject(R.id.listview)
+    ListView listview;
+    ArrayAdapter<String> adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
-        }
+
+        InjectHelper.init(this, this);
+
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        adapter.addAll(items);
+        listview.setAdapter(adapter);
     }
 
+    @OnItemClick(R.id.listview)
+    AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+            Class<? extends CommonFragment> cls = clazz[position];
+            CommonExtraParam param = new CommonExtraParam(adapter.getItem(position), cls);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            CommonFragmentActivity.launch(MainActivity.this, param, position);
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-    }
+    };
 }
