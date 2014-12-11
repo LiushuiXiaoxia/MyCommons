@@ -3,19 +3,16 @@ MyCommons
 MyCommons是移动开发库，可以简单和快速的在此基础上完成新项目的开发。
 
 ----
-
 #MyCommons交流平台
   QQ群：153516800
-
 
 #MyCommons分类：
 * MyCommonsAndroid
 * MyCommonsIOS
 * MyCommonsWindow
 
-
-
 #MyCommonsAndroid 功能
+* McApplication
 * View Inject
 * Msg Helper
 * 其他实用工具类
@@ -43,35 +40,26 @@ McInterface.java // Mc接口介绍
 ### McApplication
 McApplication在MyCommonsAndroid中算全局上下文，使用是需要在App上下文中初始化 比如如下所示：
 直接在AndroidManifest.xml中定义
-
 ```
 <application
    ...
    android:name="org.liushui.mycommons.android.McApplication"
    ....
     />
-```
-
+    
 调用方式:
-
-```
 McApplication mcApplication = McApplication.getMcAppInstance();
 ```
-
 或者继承McApplication
-
 ```
 public class AppContext extends McApplication<AppContext> {
 }
-```
 
 调用方式:
-
-```
 AppContext appContext = AppContext.getMcAppInstance();
 ```
 
-### View Inject
+### View Inject 功能介绍
 参照MyCommonsAndroidDemo中代码MsgHelperFragment.java
 ```
 public class ViewInjectFragment extends CommonFragment {
@@ -130,7 +118,7 @@ fm_view_inject.xml
         android:text="CheckBox Check" />
 </LinearLayout>
 ```
-### MsgHelper
+### MsgHelper功能介绍
 MsgHelperFragment.java
 ```
 public class MsgHelperFragment extends CommonFragment {
