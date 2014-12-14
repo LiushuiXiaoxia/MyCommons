@@ -3,8 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.liushui</groupId>
-  <artifactId>mycommons</artifactId>
-  <version>1.0</version>
+  <artifactId>mycommons.android</artifactId>
+  <version>1.0.1</version>
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
