@@ -28,7 +28,7 @@ dependencies {
 
 ext {
     PUBLISH_GROUP_ID = 'org.liushui'
-    PUBLISH_ARTIFACT_ID = 'mycommons.android'
+    PUBLISH_ARTIFACT_ID = 'mycommons'
     PUBLISH_VERSION = android.defaultConfig.versionName
 }
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>org.liushui</groupId>
-  <artifactId>mycommons.android</artifactId>
+  <artifactId>mycommons</artifactId>
   <version>1.0</version>
   <versioning>
     <versions>
       <version>1.0</version>
     </versions>
-    <lastUpdated>20141214070139</lastUpdated>
+    <lastUpdated>20141214135520</lastUpdated>
   </versioning>
 </metadata>
