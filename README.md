@@ -41,6 +41,14 @@ McInterface.java // Mc接口介绍
 
 ##MyCommonsAndroid集成
 
+Gradle集成
+```
+maven {
+    url "https://raw.githubusercontent.com/LiushuiXiaoxia/MyCommons/master/MyCommonsAndroid/repository/"
+}
+
+compile 'org.liushui:mycommons.android:1.0.1'
+```
 ### McApplication
 McApplication在MyCommonsAndroid中算全局上下文，使用是需要在App上下文中初始化,可选择如下2种方式集成:   
 * 直接在AndroidManifest.xml中定义
