@@ -41,7 +41,8 @@ McInterface.java // Mc接口介绍
 
 ##MyCommonsAndroid集成
 
-Gradle集成
+###Gradle集成
+
 ```
 maven {
     url "https://raw.githubusercontent.com/LiushuiXiaoxia/MyCommons/master/MyCommonsAndroid/repository/"
