@@ -9,7 +9,6 @@ import org.liushui.mycommons.android.log.McLog;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -17,7 +16,7 @@ import android.widget.ImageView;
 
 public class ImageLoaderUtils {
 
-    static final int DEF_LOAD_FAIL_IMAGE = -1;
+    static final int DEF_LOAD_FAIL_IMAGE = 0;
 
     private static String sdcard = "";
     private static ImageLoaderConfig config;
@@ -89,10 +88,40 @@ public class ImageLoaderUtils {
     }
 
     public static Bitmap getBitmapFromFile(String file) {
-        Options opt = new Options();
-        opt.inTargetDensity = McApplication.DIMEN_DPI;
-        opt.inTargetDensity = DisplayMetrics.DENSITY_XHIGH;
-        return BitmapFactory.decodeFile(file, opt);
+        return getBitmapFromFile(file, 0, 0);
+    }
+
+    public static Bitmap getBitmapFromFile(String file, int w, int h) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        if (w > 0 && h > 0) {
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(file, options);
+
+            int inSampleSize = calculateInSampleSize(options, w, h);
+            options = new BitmapFactory.Options();
+            options.inSampleSize = inSampleSize;
+        }
+
+        options.inTargetDensity = McApplication.DIMEN_DPI;
+        options.inTargetDensity = DisplayMetrics.DENSITY_XHIGH;
+
+        return BitmapFactory.decodeFile(file, options);
+    }
+
+    static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // 图像原始高度和宽度
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            if (width > height) {
+                inSampleSize = Math.round(1.0F * height / reqHeight);
+            } else {
+                inSampleSize = Math.round(1.0F * width / reqWidth);
+            }
+        }
+        return inSampleSize;
     }
 
     public static boolean isImageExists(String url) {
@@ -120,6 +149,15 @@ public class ImageLoaderUtils {
     public static void loadImage(String url, ImageView iv, int loadFialImage) {
         McLog.m(ImageLoaderUtils.class, "loadImage");
         ImageLoadItem item = new ImageLoadItem(url);
+        iv.setTag(item);
+        ImageLoader.getInstance().loadImage(item, new SimpleImageLoadCallback(iv, DEF_LOAD_FAIL_IMAGE));
+    }
+
+    public static void loadImage(String url, ImageView iv, int loadFialImage, int w, int h) {
+        McLog.m(ImageLoaderUtils.class, "loadImage");
+        ImageLoadItem item = new ImageLoadItem(url);
+        item.setWidth(w);
+        item.setHeight(h);
         iv.setTag(item);
         ImageLoader.getInstance().loadImage(item, new SimpleImageLoadCallback(iv, DEF_LOAD_FAIL_IMAGE));
     }

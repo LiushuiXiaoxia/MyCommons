@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.SoftReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Future;
@@ -46,7 +47,7 @@ public class ImageLoader {
             File f = new File(path);
             if (f.exists() && f.length() != 0) {
                 try {
-                    Bitmap b = ImageLoaderUtils.getBitmapFromFile(path);
+                    Bitmap b = ImageLoaderUtils.getBitmapFromFile(path, item.getWidth(), item.getHeight());
                     sendToTarget(b);
                 } catch (Exception e) {
                     sendToTarget(null);
@@ -61,7 +62,7 @@ public class ImageLoader {
             final ImageLoadWrap wrap = new ImageLoadWrap();
             wrap.callback = callback;
             wrap.item = item;
-            wrap.bitamp = b;
+            wrap.bitamp = new SoftReference<Bitmap>(b);
             McApplication.getMcAppInstance().post(new Runnable() {
                 public void run() {
                     wrap.doCallback();
@@ -79,7 +80,7 @@ public class ImageLoader {
             download(url, f);
 
             if (f.exists()) {
-                Bitmap b = ImageLoaderUtils.getBitmapFromFile(path);
+                Bitmap b = ImageLoaderUtils.getBitmapFromFile(path, item.getWidth(), item.getHeight());
                 sendToTarget(b);
             } else {
                 sendToTarget(null);
