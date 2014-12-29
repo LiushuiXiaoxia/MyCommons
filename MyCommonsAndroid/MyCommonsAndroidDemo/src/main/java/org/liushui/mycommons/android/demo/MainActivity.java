@@ -12,14 +12,19 @@ import org.liushui.mycommons.android.annotation.helper.InjectHelper;
 import org.liushui.mycommons.android.demo.common.CommonExtraParam;
 import org.liushui.mycommons.android.demo.common.CommonFragment;
 import org.liushui.mycommons.android.demo.common.CommonFragmentActivity;
+import org.liushui.mycommons.android.demo.ui.DimenFragment;
 import org.liushui.mycommons.android.demo.ui.MsgHelperFragment;
 import org.liushui.mycommons.android.demo.ui.ViewInjectFragment;
 
 
 public class MainActivity extends BaseActivity {
 
-    static String[] items = {"View Inject", "Msg Helper"};
-    static Class<? extends CommonFragment> clazz[] = new Class[]{ViewInjectFragment.class, MsgHelperFragment.class};
+    static String[] items = {"View Inject", "Msg Helper", "Dimen Util"};
+
+    static Class<? extends CommonFragment> clazz[] = new Class[]{ViewInjectFragment.class,//
+            MsgHelperFragment.class,//
+            DimenFragment.class,//
+    };
 
     @ViewInject(R.id.listview)
     ListView listview;

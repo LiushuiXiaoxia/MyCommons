@@ -1,16 +1,16 @@
 package org.liushui.mycommons.android.util;
 
-import java.io.IOException;
-import java.io.Serializable;
-
-import org.liushui.mycommons.android.McApplication;
-import org.liushui.mycommons.android.log.McLog;
-
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
+
+import org.liushui.mycommons.android.McApplication;
+import org.liushui.mycommons.android.log.McLog;
+
+import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Title: McDimenUtil.java<br>
@@ -113,5 +113,27 @@ public class McDimenUtil {
 
     public static int dp2Px(int dp) {
         return (int) (dp * McApplication.DIMEN_RATE + 0.5F);
+    }
+
+    /**
+     * 将px值转换为sp值，保证文字大小不变
+     *
+     * @param px
+     * @return
+     */
+    public static int px2sp(float px) {
+        final float fontScale = McApplication.getMcAppInstance().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (px / fontScale + 0.5f);
+    }
+
+    /**
+     * 将sp值转换为px值，保证文字大小不变
+     *
+     * @param sp
+     * @return
+     */
+    public static int sp2px(float sp) {
+        final float fontScale = McApplication.getMcAppInstance().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (sp * fontScale + 0.5f);
     }
 }
